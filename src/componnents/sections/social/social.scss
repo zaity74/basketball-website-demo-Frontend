@@ -1,0 +1,109 @@
+@import url('https://fonts.cdnfonts.com/css/bull');
+@import url('https://fonts.googleapis.com/css2?family=Jost:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Passion+One:wght@400;700;900&display=swap');
+
+@media all and (min-width: 450px){
+    #wrap{
+        width: 100%;
+    
+        .container{
+            width: 90%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            row-gap: 24px;
+            position: relative;
+            padding-top: 2em;
+            padding-bottom: 8em;
+            margin: auto;
+            .slogan{
+                text-transform: uppercase;
+                color: #c40812; 
+                font-family: 'Roboto Condensed';
+                font-style: italic;
+                font-weight: 600;
+                font-size: 3em;
+                margin-top: 0px !important;
+                margin-bottom: 0px !important;
+            }
+          
+            .social-container{
+                width: 50%;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                gap: 12%;
+                .social{
+                    display: flex;
+                    flex-direction: column;
+                    justify-content: center;
+                    align-items: center;
+                    row-gap: 8px;
+                    color: rgb(0, 31, 71);
+                    font-size: 0.8rem;
+                    font-weight: 800;
+                    text-transform: uppercase;
+                    margin-top: 1.6rem;
+                    .logo{
+                        width: 3.6rem;
+                        height: 2.6rem;
+                    }
+                }
+            }
+        }
+    }
+}
+
+@media all and (max-width: 450px){
+    #wrap{
+        width: 100%;
+    
+        .container{
+            width: 90%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            row-gap: 24px;
+            position: relative;
+            padding-top: 2em;
+            padding-bottom: 8em;
+            margin: auto;
+            .slogan{
+                text-transform: uppercase;
+                color: #c40812; 
+                font-family: 'Roboto Condensed';
+                font-style: italic;
+                text-align: center;
+                font-weight: 600;
+                font-size: 3em;
+                margin-top: 0px !important;
+                margin-bottom: 0px !important;
+            }
+          
+            .social-container{
+                width: 50%;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                gap: 12%;
+                .social{
+                    display: flex;
+                    flex-direction: column;
+                    justify-content: center;
+                    align-items: center;
+                    row-gap: 8px;
+                    color: rgb(0, 31, 71);
+                    font-size: 0.6rem;
+                    font-weight: 800;
+                    text-transform: uppercase;
+                    margin-top: 1.6rem;
+                    .logo{
+                        width: 2.6rem;
+                        height: 1.6rem;
+                    }
+                }
+            }
+        }
+    }
+}

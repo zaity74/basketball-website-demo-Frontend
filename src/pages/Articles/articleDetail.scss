@@ -1,0 +1,111 @@
+
+@media all and (min-width: 420px){
+    .history{
+        a{
+            display: flex;
+            gap: 12px;
+            align-items: center;
+        }
+    }
+    hr{
+        color: black;
+        width: 90%;
+    }
+    .other-articles{
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        width: 90%;
+        margin: auto;
+        padding-bottom: 2em;
+        gap: 20px;
+        .artLink{
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            p{
+                width: fit-content;
+                font-family: 'Roboto Condensed';
+                text-transform: uppercase;
+                display: flex;
+                padding-top: 5px;
+                padding-bottom: 5px;
+                padding-left: 15px;
+                padding-right: 15px;
+                background-color: #0c0c0c;
+                border-radius: 20px;
+                font-size: 14px;
+                font-weight: 700;
+                text-transform: uppercase;
+                line-height: 1.2;
+                color: white;
+                .icone{
+                    font-size: 1.2em;
+                    color: white; 
+                    font-weight: 700;
+                }
+            }
+            a{
+                text-decoration: none;
+                color: black; 
+                font-weight: 600;
+            }
+        }
+    }
+}
+
+
+@media all and (max-width: 420px){
+    .history{
+        a{
+            display: flex;
+            gap: 12px;
+            align-items: center;
+        }
+    }
+    hr{
+        color: black;
+        width: 90%;
+    }
+    .other-articles{
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        width: 90%;
+        margin: auto;
+        padding-bottom: 2em;
+        gap: 20px;
+        .artLink{
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            p{
+                width: fit-content;
+                font-family: 'Roboto Condensed';
+                text-transform: uppercase;
+                display: flex;
+                padding-top: 5px;
+                padding-bottom: 5px;
+                padding-left: 15px;
+                padding-right: 15px;
+                background-color: #0c0c0c;
+                border-radius: 20px;
+                font-size: 14px;
+                font-weight: 700;
+                text-transform: uppercase;
+                line-height: 1.2;
+                color: white;
+                .icone{
+                    font-size: 1.2em;
+                    color: white; 
+                    font-weight: 700;
+                }
+            }
+            a{
+                text-decoration: none;
+                color: black; 
+                font-weight: 600;
+            }
+        }
+    }
+}

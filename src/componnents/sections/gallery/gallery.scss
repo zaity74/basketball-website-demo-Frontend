@@ -1,0 +1,1309 @@
+
+@media all and (min-width: 1250px){
+    #gallery{
+        width: 100%;
+        height: auto;
+        display: flex;
+        justify-content: center;
+        background-color: #222222;
+    
+        .container{
+            width: 90%;
+            display: flex;
+            flex-direction: column;
+            row-gap: 12px;
+            position: relative;
+            padding-top: 4em;
+            overflow: hidden;
+            .separator{
+                width: 100%;
+                height: 1.3px;
+                background-color: rgba(30, 30, 30, 0.3);
+                position: absolute;
+                top: 0; 
+                left: 0;
+            }
+            .title-container{
+                width: 100%;
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                .title{
+                    font-family: 'Roboto Condensed';
+                    text-transform: uppercase;
+                    display: inline-block;
+                    padding-top: 5px;
+                    padding-bottom: 5px;
+                    padding-left: 15px;
+                    padding-right: 15px;
+                    background-color: #ffffff;
+                    border-radius: 20px;
+                    font-size: 14px;
+                    font-weight: 700;
+                    text-transform: uppercase;
+                    line-height: 1.2;
+                    color: rgb(221, 7, 65);
+                }
+                .link{
+                    text-decoration: none;
+                    color: rgb(255, 255, 255);
+                    font-family: 'Roboto Condensed';
+                    padding: 0.8rem;
+                    border: 1px rgb(221, 7, 65) solid;
+                }
+            }
+            .scroll-container{
+                width: 95%;
+                display: flex;
+                align-items: center;
+                transition: transform 0.5s ease-in-out;
+                .gallery-container{
+                    margin: auto;
+                    height: auto;
+                    display: flex;
+                    gap: 12px;
+                    align-items: flex-start;
+                    justify-content: flex-start;
+                    //padding-left: 2em; 
+                    padding-right: 2em;
+                    position: relative;
+                    .block{
+                        width: 230px;
+                        height: 320px;
+                        display: flex;
+                        flex-direction: column;
+                        position: relative;
+                        overflow: hidden;
+                        border-bottom: 0.7px #8f8f8f solid ;
+                        &:hover{
+                            background-color: rgb(221, 7, 65);
+                            .play-button{
+                                transform: scale(1.1);
+                            }
+                        }
+                        .play-button{
+                            display: block;
+                            position: absolute;
+                            top: 25%;
+                            left: 40%;
+                            appearance: none;
+                            border-radius: 50%;
+                            width: 16%;
+                            height: 16%;
+                            background: none;
+                            cursor: pointer;
+                            border: none;
+                            z-index: 5;
+                            transition: all 0.7s ease-in-out;
+                            .icone{
+                                color: white;
+                                font-size: 4em;
+                                margin-left: 4px;
+                                display: flex;
+                                align-items: center;
+                                justify-self: center;
+                                box-shadow: rgba(0, 0, 0, 0.7) 0px 2px 16px -4px;
+                            }
+    
+    
+    
+                        }
+                        .video{
+                            width: 100%;
+                            height: 70%;
+                            object-fit: cover;
+                            object-position: 50% 20%;
+                         } 
+                        .iframe{
+                            width: 100%;
+                            height: 70%;
+                            object-fit: cover;
+                            object-position: 50% 20%;
+                        }
+                         .text{
+                            width: 100%;
+                            height: 30%;
+                            padding-top: 0.7em;
+                            padding-bottom: 0.7em;
+                            display: flex;
+                            flex-direction: column;
+                            justify-content: flex-end;
+                            padding-left: 0.5rem;
+                            row-gap: 9px;
+                            position: relative;
+    
+                            .text-title{
+                                font-size: 1rem;
+                                margin: 0 !important;
+                                color: white;
+                            }
+                            .date{
+                                margin: 0 !important;
+                                color: white;
+                                .icone{
+                                    display: none;
+                                }
+                            }
+                            .decorator{
+                                display: none;
+                                position: absolute;
+                                bottom: 0;
+                                left: 0; 
+                                margin-bottom: -5px;
+                                width: 40px;
+                                height: 12px;
+                                background-color: rgb(221, 7, 65);
+                            }
+                         }
+                    }
+                    .active{
+                        width: 400px;
+                        height: 380px;
+                        display: flex;
+                        flex-direction: column;
+                        position: relative;
+                        box-shadow: rgba(0, 0, 0, 0.7) 0px 2px 16px -4px;
+                        overflow: hidden;
+                        .play-button{
+                            display: block;
+                            position: absolute;
+                            top: 25%;
+                            left: 40%;
+                            appearance: none;
+                            border-radius: 50%;
+                            background: rgb(221, 7, 65);
+                            width: 16%;
+                            height: 16%;
+                            cursor: pointer;
+                            border: none;
+                            z-index: 5;
+                            transition: all 0.7s ease-in-out;
+                            box-shadow: rgba(0, 0, 0, 0.7) 0px 2px 16px -4px;
+                            .icone{
+                                color: white;
+                                font-size: 4em;
+                                margin-left: 4px;
+                                display: flex;
+                                align-items: center;
+                                justify-self: center;
+                            }
+    
+    
+    
+                        }
+                        :hover{
+                            .play-button{
+                                transform: scale(1.1);
+                            }
+                        }
+                        .video{
+                            width: 100%;
+                            height: 100%;
+                            object-fit: cover;
+                            object-position: 50% 20%;
+                            z-index: 1;
+                         } 
+                        .iframe{
+                            width: 100%;
+                            height: 100%;
+                            object-fit: cover;
+                            object-position: 50% 20%;
+                        }
+                         .text{
+                            width: 80%;
+                            height: 20%;
+                            background-color: rgb(221, 7, 65);
+                            color: white;
+                            padding-left: 0.5rem;
+                            padding-right: 0.5rem;
+                            padding-top: 0.5rem;
+                            padding-bottom: 0.5rem;
+                            z-index: 2;
+                            position: absolute;
+                            bottom: 0;
+                            left: 0;
+                            .text-title{
+                                font-size: 1.3rem;
+                                margin: 0 !important;
+                            }
+                            .date{
+                                display: flex;
+                                justify-content: space-between;
+                                align-items: center;
+                                margin-top: 8px !important;
+                                .icone{
+                                    color: white;
+                                    font-size: 0.8rem;
+                                }
+    
+                            }
+                         }
+                    }
+                }
+            }
+            .arrow{
+                width: 100%;
+                display: flex;
+                justify-content: flex-end;
+                justify-self: flex-end;
+                gap: 8px;
+                margin-bottom: 20px;
+                .icone{
+                    color: white;
+                    font-size: 1.2rem;
+                    cursor: pointer;
+                    &:hover{
+                        color:rgb(221, 7, 65);
+                    }
+                }
+            }
+        }
+    }
+} 
+
+@media all and (max-width: 1250px) and (min-width: 768px){
+    #gallery{
+        width: 100%;
+        height: auto;
+        display: flex;
+        justify-content: center;
+        background-color: #222222;
+    
+        .container{
+            width: 90%;
+            display: flex;
+            flex-direction: column;
+            row-gap: 12px;
+            position: relative;
+            padding-top: 4em;
+            overflow: hidden;
+            .separator{
+                width: 100%;
+                height: 1.3px;
+                background-color: rgba(30, 30, 30, 0.3);
+                position: absolute;
+                top: 0; 
+                left: 0;
+            }
+            .title-container{
+                width: 100%;
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                .title{
+                    font-family: 'Roboto Condensed';
+                    text-transform: uppercase;
+                    display: inline-block;
+                    padding-top: 5px;
+                    padding-bottom: 5px;
+                    padding-left: 15px;
+                    padding-right: 15px;
+                    background-color: #ffffff;
+                    border-radius: 20px;
+                    font-size: 14px;
+                    font-weight: 700;
+                    text-transform: uppercase;
+                    line-height: 1.2;
+                    color: rgb(221, 7, 65);
+                }
+                .link{
+                    text-decoration: none;
+                    color: rgb(255, 255, 255);
+                    font-family: 'Roboto Condensed';
+                    padding: 0.8rem;
+                    border: 1px rgb(221, 7, 65) solid;
+                }
+            }
+            .scroll-container{
+                width: 95%;
+                display: flex;
+                align-items: center;
+                transition: transform 0.5s ease-in-out;
+                .gallery-container{
+                    margin: auto;
+                    height: auto;
+                    display: flex;
+                    gap: 12px;
+                    align-items: flex-start;
+                    justify-content: flex-start;
+                    //padding-left: 2em; 
+                    padding-right: 2em;
+                    position: relative;
+                    .block{
+                        width: 230px;
+                        height: 320px;
+                        display: flex;
+                        flex-direction: column;
+                        position: relative;
+                        overflow: hidden;
+                        border-bottom: 0.7px #8f8f8f solid ;
+                        &:hover{
+                            background-color: rgb(221, 7, 65);
+                            .play-button{
+                                transform: scale(1.1);
+                            }
+                        }
+                        .play-button{
+                            display: block;
+                            position: absolute;
+                            top: 25%;
+                            left: 40%;
+                            appearance: none;
+                            border-radius: 50%;
+                            width: 16%;
+                            height: 16%;
+                            background: none;
+                            cursor: pointer;
+                            border: none;
+                            z-index: 5;
+                            transition: all 0.7s ease-in-out;
+                            .icone{
+                                color: white;
+                                font-size: 4em;
+                                margin-left: 4px;
+                                display: flex;
+                                align-items: center;
+                                justify-self: center;
+                                box-shadow: rgba(0, 0, 0, 0.7) 0px 2px 16px -4px;
+                            }
+    
+    
+    
+                        }
+                        .video{
+                            width: 100%;
+                            height: 70%;
+                            object-fit: cover;
+                            object-position: 50% 20%;
+                         } 
+                        .iframe{
+                            width: 100%;
+                            height: 70%;
+                            object-fit: cover;
+                            object-position: 50% 20%;
+                        }
+                         .text{
+                            width: 100%;
+                            height: 30%;
+                            padding-top: 0.7em;
+                            padding-bottom: 0.7em;
+                            display: flex;
+                            flex-direction: column;
+                            justify-content: flex-end;
+                            padding-left: 0.5rem;
+                            row-gap: 9px;
+                            position: relative;
+    
+                            .text-title{
+                                font-size: 1rem;
+                                margin: 0 !important;
+                                color: white;
+                            }
+                            .date{
+                                margin: 0 !important;
+                                color: white;
+                                .icone{
+                                    display: none;
+                                }
+                            }
+                            .decorator{
+                                display: none;
+                                position: absolute;
+                                bottom: 0;
+                                left: 0; 
+                                margin-bottom: -5px;
+                                width: 40px;
+                                height: 12px;
+                                background-color: rgb(221, 7, 65);
+                            }
+                         }
+                    }
+                    .active{
+                        width: 400px;
+                        height: 380px;
+                        display: flex;
+                        flex-direction: column;
+                        position: relative;
+                        box-shadow: rgba(0, 0, 0, 0.7) 0px 2px 16px -4px;
+                        overflow: hidden;
+                        .play-button{
+                            display: block;
+                            position: absolute;
+                            top: 25%;
+                            left: 40%;
+                            appearance: none;
+                            border-radius: 50%;
+                            background: rgb(221, 7, 65);
+                            width: 16%;
+                            height: 16%;
+                            cursor: pointer;
+                            border: none;
+                            z-index: 5;
+                            transition: all 0.7s ease-in-out;
+                            box-shadow: rgba(0, 0, 0, 0.7) 0px 2px 16px -4px;
+                            .icone{
+                                color: white;
+                                font-size: 4em;
+                                margin-left: 4px;
+                                display: flex;
+                                align-items: center;
+                                justify-self: center;
+                            }
+    
+    
+    
+                        }
+                        :hover{
+                            .play-button{
+                                transform: scale(1.1);
+                            }
+                        }
+                        .video{
+                            width: 100%;
+                            height: 100%;
+                            object-fit: cover;
+                            object-position: 50% 20%;
+                            z-index: 1;
+                         } 
+                        .iframe{
+                            width: 100%;
+                            height: 100%;
+                            object-fit: cover;
+                            object-position: 50% 20%;
+                        }
+                         .text{
+                            width: 80%;
+                            height: 20%;
+                            background-color: rgb(221, 7, 65);
+                            color: white;
+                            padding-left: 0.5rem;
+                            padding-right: 0.5rem;
+                            padding-top: 0.5rem;
+                            padding-bottom: 0.5rem;
+                            z-index: 2;
+                            position: absolute;
+                            bottom: 0;
+                            left: 0;
+                            .text-title{
+                                font-size: 1.3rem;
+                                margin: 0 !important;
+                            }
+                            .date{
+                                display: flex;
+                                justify-content: space-between;
+                                align-items: center;
+                                margin-top: 8px !important;
+                                .icone{
+                                    color: white;
+                                    font-size: 0.8rem;
+                                }
+    
+                            }
+                         }
+                    }
+                }
+            }
+            .arrow{
+                width: 100%;
+                display: flex;
+                justify-content: flex-end;
+                justify-self: flex-end;
+                gap: 8px;
+                margin-bottom: 20px;
+                .icone{
+                    color: white;
+                    font-size: 1.2rem;
+                    cursor: pointer;
+                    &:hover{
+                        color:rgb(221, 7, 65);
+                    }
+                }
+            }
+        }
+    }
+}
+
+@media all and (max-width: 768px) and (min-width: 450px){
+    #gallery{
+        width: 100%;
+        height: auto;
+        display: flex;
+        justify-content: center;
+        background-color: #222222;
+    
+        .container{
+            width: 90%;
+            display: flex;
+            flex-direction: column;
+            row-gap: 12px;
+            position: relative;
+            padding-top: 4em;
+            overflow: hidden;
+            .separator{
+                width: 100%;
+                height: 1.3px;
+                background-color: rgba(30, 30, 30, 0.3);
+                position: absolute;
+                top: 0; 
+                left: 0;
+            }
+            .title-container{
+                width: 100%;
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                .title{
+                    font-family: 'Roboto Condensed';
+                    text-transform: uppercase;
+                    display: inline-block;
+                    padding-top: 5px;
+                    padding-bottom: 5px;
+                    padding-left: 15px;
+                    padding-right: 15px;
+                    background-color: #ffffff;
+                    border-radius: 20px;
+                    font-size: 14px;
+                    font-weight: 700;
+                    text-transform: uppercase;
+                    line-height: 1.2;
+                    color: rgb(221, 7, 65);
+                }
+                .link{
+                    text-decoration: none;
+                    color: rgb(255, 255, 255);
+                    font-family: 'Roboto Condensed';
+                    padding: 0.8rem;
+                    border: 1px rgb(221, 7, 65) solid;
+                }
+            }
+            .scroll-container{
+                width: 95%;
+                display: flex;
+                align-items: center;
+                transition: transform 0.5s ease-in-out;
+                .gallery-container{
+                    margin: auto;
+                    height: auto;
+                    display: flex;
+                    gap: 12px;
+                    align-items: flex-start;
+                    justify-content: flex-start;
+                    //padding-left: 2em; 
+                    padding-right: 2em;
+                    position: relative;
+                    .block{
+                        width: 230px;
+                        height: 320px;
+                        display: flex;
+                        flex-direction: column;
+                        position: relative;
+                        overflow: hidden;
+                        border-bottom: 0.7px #8f8f8f solid ;
+                        &:hover{
+                            background-color: rgb(221, 7, 65);
+                            .play-button{
+                                transform: scale(1.1);
+                            }
+                        }
+                        .play-button{
+                            display: block;
+                            position: absolute;
+                            top: 25%;
+                            left: 40%;
+                            appearance: none;
+                            border-radius: 50%;
+                            width: 16%;
+                            height: 16%;
+                            background: none;
+                            cursor: pointer;
+                            border: none;
+                            z-index: 5;
+                            transition: all 0.7s ease-in-out;
+                            .icone{
+                                color: white;
+                                font-size: 4em;
+                                margin-left: 4px;
+                                display: flex;
+                                align-items: center;
+                                justify-self: center;
+                                box-shadow: rgba(0, 0, 0, 0.7) 0px 2px 16px -4px;
+                            }
+    
+    
+    
+                        }
+                        .video{
+                            width: 100%;
+                            height: 70%;
+                            object-fit: cover;
+                            object-position: 50% 20%;
+                         } 
+                        .iframe{
+                            width: 100%;
+                            height: 70%;
+                            object-fit: cover;
+                            object-position: 50% 20%;
+                        }
+                         .text{
+                            width: 100%;
+                            height: 30%;
+                            padding-top: 0.7em;
+                            padding-bottom: 0.7em;
+                            display: flex;
+                            flex-direction: column;
+                            justify-content: flex-end;
+                            padding-left: 0.5rem;
+                            row-gap: 9px;
+                            position: relative;
+    
+                            .text-title{
+                                font-size: 1rem;
+                                margin: 0 !important;
+                                color: white;
+                            }
+                            .date{
+                                margin: 0 !important;
+                                color: white;
+                                .icone{
+                                    display: none;
+                                }
+                            }
+                            .decorator{
+                                display: none;
+                                position: absolute;
+                                bottom: 0;
+                                left: 0; 
+                                margin-bottom: -5px;
+                                width: 40px;
+                                height: 12px;
+                                background-color: rgb(221, 7, 65);
+                            }
+                         }
+                    }
+                    .active{
+                        width: 400px;
+                        height: 380px;
+                        display: flex;
+                        flex-direction: column;
+                        position: relative;
+                        box-shadow: rgba(0, 0, 0, 0.7) 0px 2px 16px -4px;
+                        overflow: hidden;
+                        .play-button{
+                            display: block;
+                            position: absolute;
+                            top: 25%;
+                            left: 40%;
+                            appearance: none;
+                            border-radius: 50%;
+                            background: rgb(221, 7, 65);
+                            width: 16%;
+                            height: 16%;
+                            cursor: pointer;
+                            border: none;
+                            z-index: 5;
+                            transition: all 0.7s ease-in-out;
+                            box-shadow: rgba(0, 0, 0, 0.7) 0px 2px 16px -4px;
+                            .icone{
+                                color: white;
+                                font-size: 4em;
+                                margin-left: 4px;
+                                display: flex;
+                                align-items: center;
+                                justify-self: center;
+                            }
+    
+    
+    
+                        }
+                        :hover{
+                            .play-button{
+                                transform: scale(1.1);
+                            }
+                        }
+                        .video{
+                            width: 100%;
+                            height: 100%;
+                            object-fit: cover;
+                            object-position: 50% 20%;
+                            z-index: 1;
+                         } 
+                        .iframe{
+                            width: 100%;
+                            height: 100%;
+                            object-fit: cover;
+                            object-position: 50% 20%;
+                        }
+                         .text{
+                            width: 80%;
+                            height: 20%;
+                            background-color: rgb(221, 7, 65);
+                            color: white;
+                            padding-left: 0.5rem;
+                            padding-right: 0.5rem;
+                            padding-top: 0.5rem;
+                            padding-bottom: 0.5rem;
+                            z-index: 2;
+                            position: absolute;
+                            bottom: 0;
+                            left: 0;
+                            .text-title{
+                                font-size: 1.3rem;
+                                margin: 0 !important;
+                            }
+                            .date{
+                                display: flex;
+                                justify-content: space-between;
+                                align-items: center;
+                                margin-top: 8px !important;
+                                .icone{
+                                    color: white;
+                                    font-size: 0.8rem;
+                                }
+    
+                            }
+                         }
+                    }
+                }
+            }
+            .arrow{
+                width: 100%;
+                display: flex;
+                justify-content: flex-end;
+                justify-self: flex-end;
+                gap: 8px;
+                margin-bottom: 20px;
+                .icone{
+                    color: white;
+                    font-size: 1.2rem;
+                    cursor: pointer;
+                    &:hover{
+                        color:rgb(221, 7, 65);
+                    }
+                }
+            }
+        }
+    }
+}
+
+@media all and (max-width: 450px) and (min-width: 350px){
+    #gallery{
+        width: 100%;
+        height: auto;
+        display: flex;
+        justify-content: center;
+        background-color: #222222;
+    
+        .container{
+            width: 90%;
+            display: flex;
+            flex-direction: column;
+            row-gap: 12px;
+            position: relative;
+            padding-top: 4em;
+            overflow: hidden;
+            .separator{
+                width: 100%;
+                height: 1.3px;
+                background-color: rgba(30, 30, 30, 0.3);
+                position: absolute;
+                top: 0; 
+                left: 0;
+            }
+            .title-container{
+                width: 100%;
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                .title{
+                    font-family: 'Roboto Condensed';
+                    text-transform: uppercase;
+                    display: inline-block;
+                    padding-top: 5px;
+                    padding-bottom: 5px;
+                    padding-left: 15px;
+                    padding-right: 15px;
+                    background-color: #ffffff;
+                    border-radius: 20px;
+                    font-size: 14px;
+                    font-weight: 700;
+                    text-transform: uppercase;
+                    line-height: 1.2;
+                    color: rgb(221, 7, 65);
+                }
+                .link{
+                    text-decoration: none;
+                    color: rgb(255, 255, 255);
+                    font-family: 'Roboto Condensed';
+                    padding: 0.8rem;
+                    border: 1px rgb(221, 7, 65) solid;
+                }
+            }
+            .scroll-container{
+                width: 95%;
+                display: flex;
+                align-items: center;
+                transition: transform 0.5s ease-in-out;
+                .gallery-container{
+                    margin: auto;
+                    height: auto;
+                    display: flex;
+                    gap: 12px;
+                    align-items: flex-start;
+                    justify-content: flex-start;
+                    //padding-left: 2em; 
+                    padding-right: 2em;
+                    position: relative;
+                    .block{
+                        width: 230px;
+                        height: 320px;
+                        display: flex;
+                        flex-direction: column;
+                        position: relative;
+                        overflow: hidden;
+                        border-bottom: 0.7px #8f8f8f solid ;
+                        &:hover{
+                            background-color: rgb(221, 7, 65);
+                            .play-button{
+                                transform: scale(1.1);
+                            }
+                        }
+                        .play-button{
+                            display: block;
+                            position: absolute;
+                            top: 25%;
+                            left: 40%;
+                            appearance: none;
+                            border-radius: 50%;
+                            width: 16%;
+                            height: 16%;
+                            background: none;
+                            cursor: pointer;
+                            border: none;
+                            z-index: 5;
+                            transition: all 0.7s ease-in-out;
+                            .icone{
+                                color: white;
+                                font-size: 4em;
+                                margin-left: 4px;
+                                display: flex;
+                                align-items: center;
+                                justify-self: center;
+                                box-shadow: rgba(0, 0, 0, 0.7) 0px 2px 16px -4px;
+                            }
+    
+    
+    
+                        }
+                        .video{
+                            width: 100%;
+                            height: 70%;
+                            object-fit: cover;
+                            object-position: 50% 20%;
+                         } 
+                        .iframe{
+                            width: 100%;
+                            height: 70%;
+                            object-fit: cover;
+                            object-position: 50% 20%;
+                        }
+                         .text{
+                            width: 100%;
+                            height: 30%;
+                            padding-top: 0.7em;
+                            padding-bottom: 0.7em;
+                            display: flex;
+                            flex-direction: column;
+                            justify-content: flex-end;
+                            padding-left: 0.5rem;
+                            row-gap: 9px;
+                            position: relative;
+    
+                            .text-title{
+                                font-size: 1rem;
+                                margin: 0 !important;
+                                color: white;
+                            }
+                            .date{
+                                margin: 0 !important;
+                                color: white;
+                                .icone{
+                                    display: none;
+                                }
+                            }
+                            .decorator{
+                                display: none;
+                                position: absolute;
+                                bottom: 0;
+                                left: 0; 
+                                margin-bottom: -5px;
+                                width: 40px;
+                                height: 12px;
+                                background-color: rgb(221, 7, 65);
+                            }
+                         }
+                    }
+                    .active{
+                        width: 320px;
+                        height: 380px;
+                        display: flex;
+                        flex-direction: column;
+                        position: relative;
+                        box-shadow: rgba(0, 0, 0, 0.7) 0px 2px 16px -4px;
+                        overflow: hidden;
+                        .play-button{
+                            display: block;
+                            position: absolute;
+                            top: 35%;
+                            left: 40%;
+                            appearance: none;
+                            border-radius: 50%;
+                            background: rgb(221, 7, 65);
+                            width: 70px;
+                            height: 70px;
+                            cursor: pointer;
+                            border: none;
+                            z-index: 5;
+                            transition: all 0.7s ease-in-out;
+                            box-shadow: rgba(0, 0, 0, 0.7) 0px 2px 16px -4px;
+                            .icone{
+                                color: white;
+                                font-size: 4em;
+                                margin-left: 4px;
+                                display: flex;
+                                align-items: center;
+                                justify-self: center;
+                            }
+    
+    
+    
+                        }
+                        :hover{
+                            .play-button{
+                                transform: scale(1.1);
+                            }
+                        }
+                        .video{
+                            width: 100%;
+                            height: 100%;
+                            object-fit: cover;
+                            object-position: 50% 20%;
+                            z-index: 1;
+                         } 
+                        .iframe{
+                            width: 100%;
+                            height: 100%;
+                            object-fit: cover;
+                            object-position: 50% 20%;
+                        }
+                         .text{
+                            width: 80%;
+                            height: 20%;
+                            background-color: rgb(221, 7, 65);
+                            color: white;
+                            padding-left: 0.5rem;
+                            padding-right: 0.5rem;
+                            padding-top: 0.5rem;
+                            padding-bottom: 0.5rem;
+                            z-index: 2;
+                            position: absolute;
+                            bottom: 0;
+                            left: 0;
+                            .text-title{
+                                font-size: 1.3rem;
+                                margin: 0 !important;
+                            }
+                            .date{
+                                display: flex;
+                                justify-content: space-between;
+                                align-items: center;
+                                margin-top: 8px !important;
+                                .icone{
+                                    color: white;
+                                    font-size: 0.8rem;
+                                }
+    
+                            }
+                         }
+                    }
+                }
+            }
+            .arrow{
+                width: 100%;
+                display: flex;
+                justify-content: flex-end;
+                justify-self: flex-end;
+                gap: 8px;
+                margin-bottom: 20px;
+                .icone{
+                    color: white;
+                    font-size: 1.2rem;
+                    cursor: pointer;
+                    &:hover{
+                        color:rgb(221, 7, 65);
+                    }
+                }
+            }
+        }
+    }
+}
+
+@media all and (max-width: 350px){
+    #gallery{
+        width: 100%;
+        height: auto;
+        display: flex;
+        justify-content: center;
+        background-color: #222222;
+    
+        .container{
+            width: 90%;
+            display: flex;
+            flex-direction: column;
+            row-gap: 12px;
+            position: relative;
+            padding-top: 4em;
+            overflow: hidden;
+            .separator{
+                width: 100%;
+                height: 1.3px;
+                background-color: rgba(30, 30, 30, 0.3);
+                position: absolute;
+                top: 0; 
+                left: 0;
+            }
+            .title-container{
+                width: 100%;
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                .title{
+                    font-family: 'Roboto Condensed';
+                    text-transform: uppercase;
+                    display: inline-block;
+                    padding-top: 5px;
+                    padding-bottom: 5px;
+                    padding-left: 15px;
+                    padding-right: 15px;
+                    background-color: #ffffff;
+                    border-radius: 20px;
+                    font-size: 14px;
+                    font-weight: 700;
+                    text-transform: uppercase;
+                    line-height: 1.2;
+                    color: rgb(221, 7, 65);
+                }
+                .link{
+                    text-decoration: none;
+                    color: rgb(255, 255, 255);
+                    font-family: 'Roboto Condensed';
+                    padding: 0.8rem;
+                    border: 1px rgb(221, 7, 65) solid;
+                }
+            }
+            .scroll-container{
+                width: 95%;
+                display: flex;
+                align-items: center;
+                transition: transform 0.5s ease-in-out;
+                .gallery-container{
+                    margin: auto;
+                    height: auto;
+                    display: flex;
+                    gap: 12px;
+                    align-items: flex-start;
+                    justify-content: flex-start;
+                    //padding-left: 2em; 
+                    padding-right: 2em;
+                    position: relative;
+                    .block{
+                        width: 230px;
+                        height: 320px;
+                        display: flex;
+                        flex-direction: column;
+                        position: relative;
+                        overflow: hidden;
+                        border-bottom: 0.7px #8f8f8f solid ;
+                        &:hover{
+                            background-color: rgb(221, 7, 65);
+                            .play-button{
+                                transform: scale(1.1);
+                            }
+                        }
+                        .play-button{
+                            display: block;
+                            position: absolute;
+                            top: 25%;
+                            left: 40%;
+                            appearance: none;
+                            border-radius: 50%;
+                            width: 16%;
+                            height: 16%;
+                            background: none;
+                            cursor: pointer;
+                            border: none;
+                            z-index: 5;
+                            transition: all 0.7s ease-in-out;
+                            .icone{
+                                color: white;
+                                font-size: 4em;
+                                margin-left: 4px;
+                                display: flex;
+                                align-items: center;
+                                justify-self: center;
+                                box-shadow: rgba(0, 0, 0, 0.7) 0px 2px 16px -4px;
+                            }
+    
+    
+    
+                        }
+                        .video{
+                            width: 100%;
+                            height: 70%;
+                            object-fit: cover;
+                            object-position: 50% 20%;
+                         } 
+                        .iframe{
+                            width: 100%;
+                            height: 70%;
+                            object-fit: cover;
+                            object-position: 50% 20%;
+                        }
+                         .text{
+                            width: 100%;
+                            height: 30%;
+                            padding-top: 0.7em;
+                            padding-bottom: 0.7em;
+                            display: flex;
+                            flex-direction: column;
+                            justify-content: flex-end;
+                            padding-left: 0.5rem;
+                            row-gap: 9px;
+                            position: relative;
+    
+                            .text-title{
+                                font-size: 1rem;
+                                margin: 0 !important;
+                                color: white;
+                            }
+                            .date{
+                                margin: 0 !important;
+                                color: white;
+                                .icone{
+                                    display: none;
+                                }
+                            }
+                            .decorator{
+                                display: none;
+                                position: absolute;
+                                bottom: 0;
+                                left: 0; 
+                                margin-bottom: -5px;
+                                width: 40px;
+                                height: 12px;
+                                background-color: rgb(221, 7, 65);
+                            }
+                         }
+                    }
+                    .active{
+                        width: 220px;
+                        height: 380px;
+                        display: flex;
+                        flex-direction: column;
+                        position: relative;
+                        box-shadow: rgba(0, 0, 0, 0.7) 0px 2px 16px -4px;
+                        overflow: hidden;
+                        .play-button{
+                            display: block;
+                            position: absolute;
+                            top: 35%;
+                            left: 40%;
+                            appearance: none;
+                            border-radius: 50%;
+                            background: rgb(221, 7, 65);
+                            width: 70px;
+                            height: 70px;
+                            cursor: pointer;
+                            border: none;
+                            z-index: 5;
+                            transition: all 0.7s ease-in-out;
+                            box-shadow: rgba(0, 0, 0, 0.7) 0px 2px 16px -4px;
+                            .icone{
+                                color: white;
+                                font-size: 4em;
+                                margin-left: 4px;
+                                display: flex;
+                                align-items: center;
+                                justify-self: center;
+                            }
+    
+    
+    
+                        }
+                        :hover{
+                            .play-button{
+                                transform: scale(1.1);
+                            }
+                        }
+                        .video{
+                            width: 100%;
+                            height: 100%;
+                            object-fit: cover;
+                            object-position: 50% 20%;
+                            z-index: 1;
+                         } 
+                        .iframe{
+                            width: 100%;
+                            height: 100%;
+                            object-fit: cover;
+                            object-position: 50% 20%;
+                        }
+                         .text{
+                            width: 80%;
+                            height: 18%;
+                            background-color: rgb(221, 7, 65);
+                            color: white;
+                            padding-left: 0.5rem;
+                            padding-right: 0.5rem;
+                            padding-top: 0.5rem;
+                            z-index: 2;
+                            position: absolute;
+                            bottom: 0;
+                            left: 0;
+                            .text-title{
+                                font-size: 0.8rem;
+                                margin: 0 !important;
+                            }
+                            .date{
+                                display: flex;
+                                justify-content: space-between;
+                                align-items: center;
+                                margin-top: 8px !important;
+                                .icone{
+                                    color: white;
+                                    font-size: 0.8rem;
+                                }
+    
+                            }
+                         }
+                    }
+                }
+            }
+            .arrow{
+                width: 100%;
+                display: flex;
+                justify-content: flex-end;
+                justify-self: flex-end;
+                gap: 8px;
+                margin-bottom: 20px;
+                .icone{
+                    color: white;
+                    font-size: 1.2rem;
+                    cursor: pointer;
+                    &:hover{
+                        color:rgb(221, 7, 65);
+                    }
+                }
+            }
+        }
+    }
+}

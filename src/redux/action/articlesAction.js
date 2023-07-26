@@ -29,7 +29,7 @@ export const articleDetail = (id)  => async (dispatch,getState) => {
     try {
         // Get the data from the api product
         dispatch({ type: 'FETCH_DETAILS_ARTICLE_REQUEST' })
-        const response = await axios.get(`/api/v1/articles/${id}`)
+        const response = await axios.get(`https://basket-demo2-website-api.onrender.com/api/v1/articles/${id}`)
         // Success, return data into action.payload
         dispatch({
             type: 'FETCH_DETAILS_ARTICLE_SUCCESS',

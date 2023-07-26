@@ -5,7 +5,7 @@ export const listeCategory = () => async (dispatch) => {
   
       // Get the data from the API
       dispatch({ type: 'FETCH_CATEGORY_REQUEST' });
-      const response = await axios.get('/api/v1/category/all');
+      const response = await axios.get('https://basket-demo2-website-api.onrender.com/api/v1/category/all');
   
       // Success, return data into action.payload
       dispatch({

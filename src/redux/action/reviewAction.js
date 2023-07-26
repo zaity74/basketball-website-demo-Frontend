@@ -16,7 +16,7 @@ export const addReview = (id, params) => async (dispatch, getState) => {
     dispatch({ type: 'FETCH_REVIEW_REQUEST' });
 
     const response = await axios.post(
-      `/api/v1/reviews/create-review/${id}`,{ rating, comment },config
+      `https://basket-demo2-website-api.onrender.com/api/v1/reviews/create-review/${id}`,{ rating, comment },config
     );
 
     dispatch({
@@ -47,7 +47,7 @@ export const removeReview = (id) => async (dispatch,getState) =>{
         }
     };
     try{
-        const response = await axios.delete(`/api/product/reviews/${id}`,config);
+        const response = await axios.delete(`https://basket-demo2-website-api.onrender.com/api/product/reviews/${id}`,config);
         dispatch({
             type: 'REVIEW_REMOVE',
             payload: response.data

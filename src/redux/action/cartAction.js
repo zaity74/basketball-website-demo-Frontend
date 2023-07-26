@@ -5,7 +5,7 @@ export const addToCart = (id, params) => async (dispatch, getState) => {
       const { qty } = params; // Utiliser "quantity" au lieu de "qty"
       dispatch({ type: 'ADD_TO_CART_REQUEST' });
   
-      const response = await axios.post(`/api/v1/cart/add-to-cart/${id}`, {
+      const response = await axios.post(`https://basket-demo2-website-api.onrender.com/api/v1/cart/add-to-cart/${id}`, {
         qty, // Utiliser "quantity" au lieu de "qty"
       });
   
@@ -31,7 +31,7 @@ export const getCartItems = () => async (dispatch, getState) => {
 
         dispatch({ type: 'CART_FETCH_REQUEST' });
 
-        const response = await axios.get(`/api/v1/cart/all`);
+        const response = await axios.get(`https://basket-demo2-website-api.onrender.com/api/v1/cart/all`);
 
         dispatch({ 
             type: 'CART_FETCH_SUCCESS', 
@@ -51,7 +51,7 @@ export const decreaseCartItem = (id) => async (dispatch, getState) => {
     dispatch({ type: 'DECREASE_CART_REQUEST' });
 
     // Effectuer la requête pour diminuer la quantité dans le backend (si nécessaire)
-    const response = await axios.put(`/api/v1/cart/decrease/${id}`);
+    const response = await axios.put(`https://basket-demo2-website-api.onrender.com/api/v1/cart/decrease/${id}`);
 
     dispatch({ 
       type: 'DECREASE_CART_SUCCESS', 
@@ -73,7 +73,7 @@ export const increaseCartItem = (id) => async (dispatch, getState) => {
     dispatch({ type: 'INSCREASE_CART_REQUEST' });
 
     // Effectuer la requête pour diminuer la quantité dans le backend (si nécessaire)
-    const response = await axios.put(`/api/v1/cart/increase/${id}`);
+    const response = await axios.put(`https://basket-demo2-website-api.onrender.com/api/v1/cart/increase/${id}`);
 
     dispatch({ 
       type: 'INCREASE_CART_SUCCESS', 
@@ -94,7 +94,7 @@ export const increaseCartItem = (id) => async (dispatch, getState) => {
 export const removeCart = (id) => async (dispatch, getState) => {
     try {
       dispatch({ type: 'REMOVE_FROM_CART_REQUEST' });
-      const response = await axios.delete(`/api/v1/cart/remove-to-cart/${id}`);
+      const response = await axios.delete(`https://basket-demo2-website-api.onrender.com/api/v1/cart/remove-to-cart/${id}`);
       dispatch({ 
           type: 'REMOVE_FROM_CART_SUCCESS', 
           payload: response.data

@@ -2,7 +2,6 @@
   "name": "sport-site",
   "version": "0.1.0",
   "private": true,
-  "proxy": "https://basket-demo2-website-api.onrender.com/",
   "dependencies": {
     "@emotion/react": "^11.10.6",
     "@emotion/styled": "^11.10.6",
@@ -26,7 +25,7 @@
   },
   "scripts": {
     "start": "react-scripts start",
-    "build": "react-scripts build",
+    "build": "npm run build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },

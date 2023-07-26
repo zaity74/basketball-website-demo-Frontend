@@ -59,7 +59,7 @@ function Navbar(props) {
                 </div>
                 <Link className='burger' to={'/'}>
                   <CgMenuGridR className='icone' />
-                  Menu
+                  Accueil
                 </Link>
                 <div className='login-container'>
                       {

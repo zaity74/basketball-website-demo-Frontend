@@ -62,7 +62,7 @@ function ArticleDetail(props) {
             </div>
             <div className="title">
                 <h1>{article && article.title}</h1>
-                <p>{formatDate(article.createdAt)}</p>
+                <p>{formatDate(article && article.createdAt)}</p>
                 {/* AUTHOR */}
                 {article && article.user.map((user, index) => (
                   <>

@@ -103,7 +103,6 @@ function GallerySection(props) {
                 <div className='separator'></div>
                 <div className='title-container'>
                     <h2 className='title'>#News Tv</h2>
-                    <Link className='link' to={'/'}>All News</Link>
                 </div>
                 <div className='scroll-container'
                     style={{

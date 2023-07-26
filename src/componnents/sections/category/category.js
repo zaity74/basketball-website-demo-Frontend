@@ -82,7 +82,6 @@ function Category(props) {
                     <h2 className='title'>
                         #Catalogue <br></br>
                     </h2>
-                    <Link className='link' to={'/'}>Go to shop</Link>
                 </div>
                 <div className='cart-container'>
                     {categoryDisplay}

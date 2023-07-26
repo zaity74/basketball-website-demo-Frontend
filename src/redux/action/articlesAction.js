@@ -8,7 +8,7 @@ export const listeArticles = (params) => async (dispatch) => {
   
       // Get the data from the API
       dispatch({ type: 'FETCH_ARTICLES_REQUEST' });
-      const response = await axios.get(`https://basket-demo2-website-api.onrender.com/api/v1/articles`, {
+      const response = await axios.get(`https://basket-demo2-website-api.onrender.com/api/v1/articles/`, {
         params: { page, category, title, sortField, sortOrder: order },
       });
   

@@ -15,6 +15,9 @@
   to = "https://basket-demo2-website-api.onrender.com/"
   status = 200
   force = true
+  
+[dev]
+  command = "npm start" # Commande de démarrage, utilisée lors du développement local avec "netlify dev"
 
   ## (optional) Settings for Netlify Dev
   ## https://github.com/netlify/cli/blob/main/docs/netlify-dev.md#project-detection

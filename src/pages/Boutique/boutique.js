@@ -61,6 +61,10 @@ function Boutique(props) {
         dispatch(listeProduct({title, page, limit, order, category, price, sortField}));
         dispatch(listeCategory());
         dispatch(listeSizes());
+        if (removeChoice) {
+            // Réinitialise l'affichage ici
+            setRemoveChoice(false); // Réinitialise removeChoice après l'utilisation
+        }
     }, [dispatch, title, page, limit, category, price, sortField, order, removeChoice ]);
 
 
@@ -88,14 +92,13 @@ function Boutique(props) {
         //window.location.reload();
     };
     const removeCategory = () => {
-        const newRemoveChoiceValue = true;
-        setRemoveChoice((newRemoveChoiceValue) => {
-            localStorage.removeItem("selectedCategory", category);
-            return window.location.reload('/boutique')
-        });
-        console.log(newRemoveChoiceValue);
-        //window.location.reload();
-    }; 
+        // Supprime la catégorie du localstorage
+        localStorage.removeItem("selectedCategory");
+        setCategory(storedCategory);
+    
+        // Met à jour l'état pour déclencher la réinitialisation de l'affichage
+        setRemoveChoice(true);
+    };
     
     const handlePriceChange = (event) => {
         const newPrice = event.target.value;

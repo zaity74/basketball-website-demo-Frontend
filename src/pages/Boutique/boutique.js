@@ -38,7 +38,7 @@ function Boutique(props) {
     const [page, setPage] = useState(storedPage);
     const [title, setTitle] = useState(null);
 
-    // New constantes
+    // data extraction
     const { products, pagination, results, total }  = useSelector((state) => state.listProduct.product);
     const allCategory = useSelector((state) => state.listCategory.category.data);
     const allSizes = useSelector((state) => state.listSizes.size.data);
@@ -60,7 +60,7 @@ function Boutique(props) {
         dispatch(listeProduct({title, page, limit, order, category, price, sortField}));
         dispatch(listeCategory());
         dispatch(listeSizes());
-      }, [dispatch, title, page, limit, category, price, sortField, order ]);
+    }, [dispatch, title, page, limit, category, price, sortField, order ]);
 
 
     // Function
@@ -84,7 +84,7 @@ function Boutique(props) {
     const handleCategoryClick = (catName) => {
         setCategory(catName);
         localStorage.setItem("selectedCategory", catName);
-        window.location.reload();
+        //window.location.reload();
     };
     const removeCategory = () => {
         localStorage.removeItem("selectedCategory");

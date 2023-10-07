@@ -30,6 +30,7 @@ function Home(props) {
     const dispatch = useDispatch();
     const articles  = useSelector((state) => state.listeArticles.article.article);
     const {data}   = useSelector((state) => state.listeMedia.medias);
+    console.log('DATA VIDEO : ', data);
     const products   = useSelector((state) => state.listProduct.product.products);
     const games = useSelector((state) => state.listeGames.games.data);
     const ranking = useSelector((state) => state.listeGames.ranking.data);

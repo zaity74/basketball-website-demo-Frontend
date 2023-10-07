@@ -49,7 +49,7 @@ function GallerySection(props) {
           setMoveForward(false);
         }
       };
-      const prevSlide = () => {
+    const prevSlide = () => {
         if (currentIndex > currentIndex - 1 && currentIndex > 0) {
           setCurrentIndex(currentIndex - 1);
           setMoveForward(true);
@@ -69,14 +69,17 @@ function GallerySection(props) {
             </>
           ):
           (
-            <iframe
-                className='iframe'
-              src={gallery.file}
-              title="YouTube video player"
-              frameBorder="0"
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-              allowFullScreen
-            />
+            <video
+              className='iframe'
+              controls
+              autoPlay
+              loop
+              muted
+            >
+              <source src={gallery.file} type="video/mp4" />
+              Your browser does not support the video tag.
+            </video>
+
           )}
             <div className='text'>
                 <h3 className='text-title'>{article.title}</h3>

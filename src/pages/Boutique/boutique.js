@@ -63,6 +63,7 @@ function Boutique(props) {
         dispatch(listeSizes());
         if (removeChoice) {
             // Réinitialise l'affichage ici
+            setCategory(storedCategory);
             setRemoveChoice(false); // Réinitialise removeChoice après l'utilisation
         }
     }, [dispatch, title, page, limit, category, price, sortField, order, removeChoice ]);
@@ -94,7 +95,6 @@ function Boutique(props) {
     const removeCategory = () => {
         // Supprime la catégorie du localstorage
         localStorage.removeItem("selectedCategory");
-        setCategory(storedCategory);
     
         // Met à jour l'état pour déclencher la réinitialisation de l'affichage
         setRemoveChoice(true);

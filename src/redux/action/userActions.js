@@ -9,7 +9,7 @@ export const userLogin = (email, password, access) => async (dispatch, getState)
         'Content-type': 'application/json'
       }
     }
-    const response = await axios.post('https://basket-demo2-website-api.onrender.com/api/v1/users/login', {
+    const response = await axios.post(`https://basket-demo2-website-api.onrender.com/api/v1/users/login`, {
       password,
       email,
     }, config);
@@ -42,7 +42,7 @@ export const userRegister = (firstname, lastname, email, password) => async (dis
           'Content-type': 'application/json'
         }
       }
-      const response = await axios.post('https://basket-demo2-website-api.onrender.com/api/v1/users/register', {
+      const response = await axios.post(`https://basket-demo2-website-api.onrender.com/api/v1/users/register`, {
         firstname,
         lastname,
         email,
@@ -56,6 +56,7 @@ export const userRegister = (firstname, lastname, email, password) => async (dis
           type: 'REGISTER_SUCCESS',
           payload: response.data
         });
+        window.location.href = '/login';
       
   
     } catch (error) {

@@ -19,6 +19,7 @@ function RegisterForm(props) {
 
     // New constantes
     const dispatch = useDispatch();
+    const { isRegiter } = useSelector(state => state.userRegister)
 
     
   

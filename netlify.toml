@@ -12,7 +12,7 @@
   #  status = 200
 [[redirects]]
   from = "/api/*"
-  to = "https://basket-demo2-website-api.onrender.com/"
+  to = "http://localhost:3306/"
   status = 200
   force = true
 

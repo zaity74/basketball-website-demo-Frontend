@@ -9,6 +9,7 @@ import Sponsors from '../../componnents/sections/sponsors/sponsors';
 import Social from '../../componnents/sections/social/social';
 import Footer from '../../componnents/footer/footer';
 import Navbar from '../../componnents/header/navbar/login';
+import PlayersSection from '../../componnents/sections/players/players';
 
 // Redux import 
 import { listeArticles } from '../../redux/action/articlesAction';

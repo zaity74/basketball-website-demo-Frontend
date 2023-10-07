@@ -4,7 +4,7 @@ export const listeCalendar = () => async (dispatch) => {
     try {
       // Get the data from the API
       dispatch({ type: 'FETCH_GAMES_CALENDAR_REQUEST' });
-      const response = await axios.get('https://basket-demo2-website-api.onrender.com/api/v1/games/calendar');
+      const response = await axios.get(`https://basket-demo2-website-api.onrender.com/api/v1/games/calendar`);
   
       // Success, return data into action.payload
       dispatch({
@@ -24,7 +24,7 @@ export const listeRanking = () => async (dispatch) => {
   try {
     // Get the data from the API
     dispatch({ type: 'FETCH_RANKING_REQUEST' });
-    const response = await axios.get('https://basket-demo2-website-api.onrender.com/api/v1/games/ranking');
+    const response = await axios.get(`https://basket-demo2-website-api.onrender.com/api/v1/games/ranking`);
 
     // Success, return data into action.payload
     dispatch({

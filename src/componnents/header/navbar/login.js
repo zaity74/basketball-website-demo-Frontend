@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 // Redux import 
 import { userLogin } from '../../../redux/action/userActions';
 import { userLogout } from '../../../redux/action/userActions';
+
 // Hooks
 import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch } from 'react-redux';
@@ -66,7 +67,7 @@ function Navbar(props) {
                         isLogin && isLogin ? 
                           <div className='connexion'>
                             <Link onClick={handleLogout}  className='link' to={'/login'}>
-                                Logout
+                                Déconnexion
                             </Link>
                             <HiUserCircle className='icone' />
                         </div>
@@ -74,13 +75,13 @@ function Navbar(props) {
                         <>
                           <div className='connexion'>
                               <Link className='link' to={'/login'}>
-                                  Login
+                                  Connexion
                               </Link>
                               <HiUserCircle className='icone' />
                           </div>
                           <div className='connexion'>
                               <Link className='link' to={'/register'}>
-                                  Register
+                                  S'inscrire
                               </Link>
 
                           </div>
@@ -88,7 +89,7 @@ function Navbar(props) {
                       }
                      <div className='register'>
                           <Link className='link' to={'/panier'}>
-                              Shop
+                              Panier
                           </Link>
                           <HiOutlineShoppingCart className='icone' />
                     </div>

@@ -16,7 +16,7 @@ export const addReview = (id, params) => async (dispatch, getState) => {
     dispatch({ type: 'FETCH_REVIEW_REQUEST' });
 
     const response = await axios.post(
-      `https://basket-demo2-website-api.onrender.com/api/v1/reviews/create-review/${id}`,{ rating, comment },config
+      `http://localhost:3306/api/v1/reviews/create-review/${id}`,{ rating, comment },config
     );
 
     dispatch({

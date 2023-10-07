@@ -54,6 +54,9 @@ function Header(props) {
         ) => (
             <div className={index === currentIndex ? 'active' : 'previewBanner'}
                 key={index}
+                // dans l'év onMouse () => fucntion(index) pour sélectionner l'index
+                // Quand on a un map
+                // dans la méthode je met en params index qui est égale à index de articles.map
                 onMouseOver={() => pauseLoader(index)}
                 onMouseLeave={() => reLoad(index)}
                 >
@@ -75,6 +78,7 @@ function Header(props) {
     const currentArticle = articles[currentIndex? currentIndex : 0];
 
    // Page load
+   // Charger une méthode au chargement de l apge
     useEffect(() => {
         const interval = setInterval(slideCard, 100);
     

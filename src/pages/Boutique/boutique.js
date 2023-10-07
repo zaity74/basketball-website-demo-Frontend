@@ -37,6 +37,7 @@ function Boutique(props) {
     const [sortField, setSortField] = useState(storedSortField);
     const [page, setPage] = useState(storedPage);
     const [title, setTitle] = useState(null);
+    const [removeChoice, setRemoveChoice] = useState(false);
 
     // data extraction
     const { products, pagination, results, total }  = useSelector((state) => state.listProduct.product);
@@ -60,7 +61,7 @@ function Boutique(props) {
         dispatch(listeProduct({title, page, limit, order, category, price, sortField}));
         dispatch(listeCategory());
         dispatch(listeSizes());
-    }, [dispatch, title, page, limit, category, price, sortField, order ]);
+    }, [dispatch, title, page, limit, category, price, sortField, order, removeChoice ]);
 
 
     // Function
@@ -87,8 +88,13 @@ function Boutique(props) {
         //window.location.reload();
     };
     const removeCategory = () => {
-        localStorage.removeItem("selectedCategory");
-        window.location.reload();
+        const newRemoveChoiceValue = true;
+        setRemoveChoice((newRemoveChoiceValue) => {
+            localStorage.removeItem("selectedCategory", category);
+            return window.location.reload('/boutique')
+        });
+        console.log(newRemoveChoiceValue);
+        //window.location.reload();
     }; 
     
     const handlePriceChange = (event) => {

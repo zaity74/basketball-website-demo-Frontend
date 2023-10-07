@@ -12,7 +12,7 @@
   #  status = 200
 [[redirects]]
   from = "/api/*"
-  to = "http://localhost:3306/"
+  to = "*"
   status = 200
   force = true
 

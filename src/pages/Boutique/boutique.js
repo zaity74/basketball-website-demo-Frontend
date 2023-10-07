@@ -64,9 +64,10 @@ function Boutique(props) {
         if (removeChoice) {
             // Réinitialise l'affichage ici
             setCategory(storedCategory);
-            window.location.href = '/boutique';
+            window.location.reload(true);
             setRemoveChoice(false); // Réinitialise removeChoice après l'utilisation
         }
+        
     }, [dispatch, title, page, limit, category, price, sortField, order, removeChoice ]);
 
 

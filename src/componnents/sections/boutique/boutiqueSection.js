@@ -12,20 +12,12 @@ import { BsHeartFill } from 'react-icons/bs';
 import { BsArrowRight } from 'react-icons/bs'
 
 function BoutiqueSection(props) {
-    const { product, addCart } = props;
+    const { product, isAdded, setIsAdded } = props;
     // State
-    const [showVideo, setShowVideo] = useState(false);
-    const [currentIndex, setCurrentIndex] = useState(0);
-    const [moveForward, setMoveForward] = useState(false);
-    // New constantes
-     // New constantes
-   
 
-    // Function
+    // EFFECTS
 
-    // Page load
-  
-    // Events
+    // FUNCTION
    
     // Variables
   
@@ -43,7 +35,7 @@ function BoutiqueSection(props) {
                     </Link>
                 </div>
                 <div className='cart-container'>
-                    <Cart cart={product} handleAddToCart={addCart} />
+                    <Cart cart={product} isAdded={isAdded} setIsAdded={setIsAdded} />
                 </div>
             </div>
           </section>

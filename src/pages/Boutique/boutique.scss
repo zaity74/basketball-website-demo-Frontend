@@ -338,6 +338,16 @@
             justify-content: center;
             align-items: center;
             gap: 8px;
+            .chevrons{
+                &:hover{
+                    color: #C40812;
+                }
+            }
+            button{
+                // background-color: inherit;
+                outline: none;
+                border: none;
+            }
         }
     }
   }

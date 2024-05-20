@@ -19,34 +19,38 @@ import { listeProduct } from '../../redux/action/productAction';
 import { addToCart } from '../../redux/action/cartAction';
 import { listeCalendar } from '../../redux/action/gamesAction';
 import { listeRanking } from '../../redux/action/gamesAction';
+import { getCartItems } from '../../redux/action/cartAction';
 // Hooks
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useLocation, useNavigate} from 'react-router-dom';
 
 function Home(props) {
-    // State
+    // STATE
     const [loading, setLoading] = useState(true);
+    const [isAdded, setIsAdded] = useState({});
     
-    // New constantes
+    // DATA RESPONSE AND USE CONSTANTE
     const dispatch = useDispatch();
     const location = useLocation();
-
     const articles  = useSelector((state) => state.listeArticles.article.articles);
     const {data}   = useSelector((state) => state.listeMedia.medias);
     const products   = useSelector((state) => state.listProduct.product.products);
     const games = useSelector((state) => state.listeGames.games.data);
     const ranking = useSelector((state) => state.listeGames.ranking.data);
+    const { cartItems } = useSelector((state) => state.addToCart.cartItems);
 
 
     
   
-    // Page load
+    // EFFECTS
     useEffect(() => {
       const queryParams = new URLSearchParams(location.search);
       const page = queryParams.get('page') || 1;
       const sortOrder = queryParams.get('sortOrder') || 'asc';
       const limit = queryParams.get('limit') || 10;
+
+      console.log('videos :',data);
 
       // Fetch articles
       try{
@@ -76,12 +80,12 @@ function Home(props) {
 
 
     }, [dispatch, location.search]);
+
+  
+
+  // FUNCTIONS
+
     
-    // Events
-    const handleAddToCart = (id, qty) => {
-      dispatch(addToCart(id,{qty})); 
-       // Attendre que l'action produitDetails soit terminée
-    };
    
     // Variables
   
@@ -96,7 +100,7 @@ function Home(props) {
         <Category />
         {
           loading ? (<p>Loading...</p>) : 
-          <BoutiqueSection product={ products } addCart={handleAddToCart} />
+          <BoutiqueSection product={ products } isAdded={isAdded} setIsAdded={setIsAdded} />
         }
         <Sponsors />
         <Social />

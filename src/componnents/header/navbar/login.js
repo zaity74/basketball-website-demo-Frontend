@@ -1,17 +1,19 @@
 import './login.scss';
 import { Link } from 'react-router-dom';
+import { HiUserCircle, HiOutlineMagnifyingGlass, HiOutlineShoppingCart } from "react-icons/hi2";
+import { CgMenuGridR } from 'react-icons/cg'
 
 // Redux import 
 import { userLogin } from '../../../redux/action/userActions';
 import { userLogout } from '../../../redux/action/userActions';
+import { getCartItems } from '../../../redux/action/cartAction';
 
 // Hooks
 import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch } from 'react-redux';
-import { useParams } from 'react-router-dom';
+import { useLocation } from 'react-router-dom';
 import { createBrowserHistory } from 'history';
-import { HiUserCircle, HiOutlineMagnifyingGlass, HiOutlineShoppingCart } from "react-icons/hi2";
-import { CgMenuGridR } from 'react-icons/cg'
+
 
 
 function Navbar(props) {
@@ -19,7 +21,9 @@ function Navbar(props) {
     const [isWindowDown, setWindowDown] = useState(false);
     // New constantes
     const dispatch = useDispatch()
+    const location = useLocation(); 
     const isLogin  = useSelector(state => state.userLogin.isLogin);
+    const { totalItem } = useSelector((state) => state.addToCart.cartItems);
 
     
   
@@ -41,7 +45,23 @@ function Navbar(props) {
       return () => {
         window.removeEventListener("scroll", handleScroll);
       };
+
     }, [prevScrollPos]);
+
+    useEffect(() => {
+
+      const getCartIt = async() =>{
+        try{
+          const listeItems = await dispatch(getCartItems());
+          return listeItems
+        }catch(error){
+          console.log("error:", error);
+
+        }
+      }
+      getCartIt();
+
+    }, [totalItem]);
   
     // Events
     const handleLogout = () =>{
@@ -59,14 +79,14 @@ function Navbar(props) {
                     alt='logo' />
                 </div>
                 <div className='linkContainer'>
-                  <Link className='burger' to={'/'}>
+                  <Link className={`burger ${location.pathname === '/' ? 'activeLink' : ''}`} to={'/'}>
                     <CgMenuGridR className='icone' />
                     Accueil
                   </Link>
-                  <Link className='burger' to={'/boutique'}>
+                  <Link className={`burger ${location.pathname === '/boutique' ? 'activeLink' : ''}`} to={'/boutique'}>
                     Boutique
                   </Link>
-                  <Link className='burger' to={'/blog'}>
+                  <Link className={`burger ${location.pathname === '/blog'  ? 'activeLink' : ''}`} to={'/blog'}>
                     Blog
                   </Link>
                 </div>
@@ -74,7 +94,7 @@ function Navbar(props) {
                       {
                         isLogin && isLogin ? 
                           <div className='connexion'>
-                            <Link onClick={handleLogout}  className='link' to={'/login'}>
+                            <Link onClick={handleLogout}  className={`link ${location.pathname === '/login' ? 'activeLink' : ''}`} to={'/login'}>
                                 Déconnexion
                             </Link>
                             <HiUserCircle className='icone' />
@@ -82,13 +102,13 @@ function Navbar(props) {
                         :
                         <>
                           <div className='connexion'>
-                              <Link className='link' to={'/login'}>
+                              <Link className={`link ${location.pathname === '/login' ? 'activeLink' : ''}`} to={'/login'}>
                                   Connexion
                               </Link>
                               <HiUserCircle className='icone' />
                           </div>
                           <div className='connexion'>
-                              <Link className='link' to={'/register'}>
+                              <Link className={`link ${location.pathname === '/register' ? 'activeLink' : ''}`} to={'/register'}>
                                   S'inscrire
                               </Link>
 
@@ -96,8 +116,13 @@ function Navbar(props) {
                         </>
                       }
                      <div className='register'>
-                          <Link className='link' to={'/panier'}>
+                          <Link className={`link ${location.pathname === '/panier' ? 'activeLink' : ''}`} to={'/panier'}>
                               Panier
+                              {
+                                totalItem > 0 ? 
+                                <span>{totalItem && totalItem}</span> : 
+                                " "
+                              }
                           </Link>
                           <HiOutlineShoppingCart className='icone' />
                     </div>

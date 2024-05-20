@@ -17,7 +17,7 @@ export const addToCart = (id, params) => async (dispatch, getState) => {
       });
   
       localStorage.setItem('cartItems', JSON.stringify(getState().addToCart.cartItems));
-      alert("un nouveau produit vient d'être ajouté au panier")
+      // alert("un nouveau produit vient d'être ajouté au panier")
     } catch (error) {
       dispatch({
         type: 'ADD_TO_CART_FAIL',

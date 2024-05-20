@@ -42,6 +42,7 @@
           display: flex;
           align-items: center;
           gap: 4px;
+          cursor: pointer;
         }
       }
 
@@ -140,6 +141,7 @@
               font-family: 'Roboto Condensed';
               font-style: normal !important;
               transition: 0.4s ease-in-out;
+              cursor: pointer;
 
               &:hover {
                 background-color: rgb(221, 7, 65);
@@ -183,6 +185,10 @@
       }
     }
   }
+.buttonAdded{
+  background-color: rgb(221, 7, 65);
+  color: white !important;
+}
 
 @media all and (min-width: 1250px) {
     #boutique {
@@ -297,6 +303,7 @@
                 font-family: 'Roboto Condensed';
                 font-style: normal !important;
                 transition: 0.4s ease-in-out;
+                cursor: pointer;
                 &:hover {
                   background-color: rgb(221, 7, 65);
                   border: none;
@@ -453,6 +460,7 @@
                 font-family: 'Roboto Condensed';
                 font-style: normal !important;
                 transition: 0.4s ease-in-out;
+                cursor: pointer;
                 &:hover {
                   background-color: rgb(221, 7, 65);
                   border: none;
@@ -610,6 +618,7 @@
                 font-family: 'Roboto Condensed';
                 font-style: normal !important;
                 transition: 0.4s ease-in-out;
+                cursor: pointer;
                 &:hover {
                   background-color: rgb(221, 7, 65);
                   border: none;
@@ -767,6 +776,7 @@
                 font-family: 'Roboto Condensed';
                 font-style: normal !important;
                 transition: 0.4s ease-in-out;
+                cursor: pointer;
                 &:hover {
                   background-color: rgb(221, 7, 65);
                   border: none;
@@ -924,6 +934,7 @@
                 font-family: 'Roboto Condensed';
                 font-style: normal !important;
                 transition: 0.4s ease-in-out;
+                cursor: pointer;
                 &:hover {
                   background-color: rgb(221, 7, 65);
                   border: none;
@@ -1080,6 +1091,7 @@
                 font-family: 'Roboto Condensed';
                 font-style: normal !important;
                 transition: 0.4s ease-in-out;
+                cursor: pointer;
   
                 &:hover {
                   background-color: rgb(221, 7, 65);

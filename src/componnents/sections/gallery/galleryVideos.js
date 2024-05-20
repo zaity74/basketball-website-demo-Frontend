@@ -30,9 +30,9 @@ function GallerySection(props) {
     };
 
     // Events
-    const handlePlayVideo = () => {
-        setShowVideo(true);
-    };
+    // const handlePlayVideo = () => {
+    //     setShowVideo(true);
+    // };
 
     const nextSlide = () => {
         if (currentIndex < gallery.length - 1) {
@@ -63,9 +63,9 @@ function GallerySection(props) {
           {!showVideo ? (
             <>
               <img src={article.image} alt='article image' className='video' />
-            <button onClick={handlePlayVideo} className='play-button'>
-                <IoIosPlay className='icone' />
-            </button>
+              <button className='play-button'>
+                  <IoIosPlay className='icone' />
+              </button>
             </>
           ):
           (

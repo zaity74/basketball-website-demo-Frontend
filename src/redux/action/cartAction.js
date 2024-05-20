@@ -8,6 +8,8 @@ export const addToCart = (id, params) => async (dispatch, getState) => {
       const response = await axios.post(`https://basket-demo2-website-api.onrender.com/api/v1/cart/add-to-cart/${id}`, {
         qty, // Utiliser "quantity" au lieu de "qty"
       });
+
+      console.log('FETCHING DATA FIRST 1 :', response.data);
   
       dispatch({
         type: 'ADD_TO_CART_SUCCESS',
@@ -96,6 +98,8 @@ export const removeCart = (id) => async (dispatch, getState) => {
     try {
       dispatch({ type: 'REMOVE_FROM_CART_REQUEST' });
       const response = await axios.delete(`https://basket-demo2-website-api.onrender.com/api/v1/cart/remove-to-cart/${id}`);
+      
+
       dispatch({ 
           type: 'REMOVE_FROM_CART_SUCCESS', 
           payload: response.data
@@ -109,3 +113,22 @@ export const removeCart = (id) => async (dispatch, getState) => {
       });
     }
   };
+
+export const clearCart = () => async (dispatch, getState) => {
+  try {
+    dispatch({ type: 'CLEAR_CART_REQUEST' });
+
+    await axios.delete('https://basket-demo2-website-api.onrender.com/api/v1/cart/clear');
+
+    dispatch({ type: 'CLEAR_CART_SUCCESS' });
+
+    localStorage.removeItem('cartItems');
+  } catch (error) {
+    dispatch({
+      type: 'CLEAR_CART_FAIL',
+      payload: error.response && error.response.data.message
+        ? error.response.data.message
+        : error.message,
+    });
+  }
+};

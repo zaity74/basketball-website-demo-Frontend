@@ -8,7 +8,6 @@
         margin-top: 140px;
         display: flex;
         justify-content: center;
-    
         .container{
             width: 90%;
             display: flex;
@@ -67,9 +66,19 @@
                         display: flex;
                         flex-direction: column;
                         position: relative;
-                        border-bottom: 0.7px #8f8f8f solid ;
+                        border-bottom: 2px #C40B14 solid;
+                        box-shadow: rgba(0, 0, 0, 0.2) 0px 2px 8px;
+                        transition: 0.2s ease-in-out;
                         &:hover{
-                            background-color: rgba(240, 240, 240, 0.4);
+                            background-color: white;
+                            border-bottom: inherit;
+                            transform: scale(1.03);
+                            z-index: 10;
+                            .text{
+                                a{
+                                    color: rgb(79, 79, 79);
+                                }
+                            }
                         }
                         .image{
                             width: 100%;
@@ -110,19 +119,19 @@
                         grid-row: auto/span 1;
                     }
                     .block3{
-                        grid-column: auto/span 2;
+                        grid-column: auto/span 4;
                         grid-row: auto/span 1;
                     }
                     .block4{
-                        grid-column: auto/span 2;
+                        grid-column: auto/span 4;
                         grid-row: auto/span 1;
                     }
                     .block5{
-                        grid-column: auto/span 2;
+                        grid-column: auto/span 4;
                         grid-row: auto/span 1;
                     }
                     .block6{
-                        grid-column: auto/span 2;
+                        grid-column: auto/span 4;
                         grid-row: auto/span 1;
                     }
                     .block7{
@@ -239,9 +248,19 @@
                         display: flex;
                         flex-direction: column;
                         position: relative;
-                        border-bottom: 0.7px #8f8f8f solid ;
+                        border-bottom: 2px #C40B14 solid;
+                        box-shadow: rgba(0, 0, 0, 0.2) 0px 2px 8px;
+                        transition: 0.2s ease-in-out;
                         &:hover{
-                            background-color: rgba(240, 240, 240, 0.4);
+                            background-color: white;
+                            border-bottom: inherit;
+                            transform: scale(1.03);
+                            z-index: 10;
+                            .text{
+                                a{
+                                    color: rgb(79, 79, 79);
+                                }
+                            }
                         }
                         .image{
                             width: 100%;
@@ -282,31 +301,31 @@
                         grid-row: auto/span 1;
                     }
                     .block3{
-                        grid-column: auto/span 2;
+                        grid-column: auto/span 4;
                         grid-row: auto/span 1;
                     }
                     .block4{
-                        grid-column: auto/span 2;
+                        grid-column: auto/span 4;
                         grid-row: auto/span 1;
                     }
                     .block5{
-                        grid-column: auto/span 2;
+                        grid-column: auto/span 4;
                         grid-row: auto/span 1;
                     }
                     .block6{
-                        grid-column: auto/span 2;
+                        grid-column: auto/span 4;
                         grid-row: auto/span 1;
                     }
                     .block7{
-                        grid-column: auto/span 2;
+                        grid-column: auto/span 4;
                         grid-row: auto/span 1;
                     }
                     .block8{
-                        grid-column: auto/span 2;
+                        grid-column: auto/span 4;
                         grid-row: auto/span 1;
                     }
                     .block9{
-                        grid-column: auto/span 2;
+                        grid-column: auto/span 4;
                         grid-row: auto/span 1;
                     }
                 }
@@ -410,9 +429,19 @@
                         display: flex;
                         flex-direction: column;
                         position: relative;
-                        border-bottom: 0.7px #8f8f8f solid ;
+                        border-bottom: 2px #C40B14 solid;
+                        box-shadow: rgba(0, 0, 0, 0.2) 0px 2px 8px;
+                        transition: 0.2s ease-in-out;
                         &:hover{
-                            background-color: rgba(240, 240, 240, 0.4);
+                            background-color: white;
+                            border-bottom: inherit;
+                            transform: scale(1.03);
+                            z-index: 10;
+                            .text{
+                                a{
+                                    color: rgb(79, 79, 79);
+                                }
+                            }
                         }
                         .image{
                             width: 100%;
@@ -461,23 +490,23 @@
                         grid-row: auto/span 1;
                     }
                     .block5{
-                        grid-column: auto/span 2;
+                        grid-column: auto/span 6;
                         grid-row: auto/span 1;
                     }
                     .block6{
-                        grid-column: auto/span 2;
+                        grid-column: auto/span 6;
                         grid-row: auto/span 1;
                     }
                     .block7{
-                        grid-column: auto/span 2;
+                        grid-column: auto/span 6;
                         grid-row: auto/span 1;
                     }
                     .block8{
-                        grid-column: auto/span 2;
+                        grid-column: auto/span 6;
                         grid-row: auto/span 1;
                     }
                     .block9{
-                        grid-column: auto/span 2;
+                        grid-column: auto/span 6;
                         grid-row: auto/span 1;
                     }
                 }

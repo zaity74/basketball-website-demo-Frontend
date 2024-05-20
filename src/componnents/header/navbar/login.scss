@@ -6,6 +6,7 @@
         right: 0;
         top: 0;
         height: 70px;
+        z-index: 10;
         transition: all 0.13s ease-in-out;
         border-bottom: 0.7px #8f8f8f solid;
         .container{
@@ -16,24 +17,27 @@
             position: relative;
             align-items: center;
             column-gap: 20px;
-            justify-content: space-between;
-            .burger{
+            .linkContainer{
                 display: flex;
-                justify-content: flex-start;
-                align-items: center;
                 flex-grow: 2;
-                column-gap: 12px;
-                padding-left: 1.5rem;
-                border-left: 0.8px #001E3C solid;
-                text-decoration: none;
-                text-transform: uppercase;
-                font-weight: 600;
-                font-size: 0.8rem;
-                color: #001E3C;
-                .icone{
-                    font-size: 1.6em;
+                .burger{
+                    display: flex;
+                    justify-content: flex-start;
+                    align-items: center;
+                    column-gap: 12px;
+                    padding-left: 1.5rem;
+                    padding-right: 1.5rem;
+                    border-left: 0.8px #001E3C solid;
+                    text-decoration: none;
+                    text-transform: uppercase;
+                    font-weight: 600;
+                    font-size: 0.8rem;
                     color: #001E3C;
-    
+                    .icone{
+                        font-size: 1.6em;
+                        color: #001E3C;
+        
+                    }
                 }
             }
             .logo-container{
@@ -125,6 +129,7 @@
         height: 50px;
         z-index: 100;
         transition: all 0.4s ease-in-out;
+        border-top: 2px #c40812 solid;
         .container{
             width: 90%;
             height: 100%;
@@ -133,24 +138,27 @@
             position: relative;
             align-items: center;
             column-gap: 20px;
-            justify-content: space-between;
-            .burger{
+            .linkContainer{
                 display: flex;
-                justify-content: flex-start;
-                align-items: center;
                 flex-grow: 2;
-                column-gap: 12px;
-                padding-left: 1.5rem;
-                border-left: 0.8px #001E3C solid;
-                text-decoration: none;
-                text-transform: uppercase;
-                font-weight: 600;
-                font-size: 0.8rem;
-                color: #001E3C;
-                .icone{
-                    font-size: 1.6em;
+                .burger{
+                    display: flex;
+                    justify-content: flex-start;
+                    align-items: center;
+                    column-gap: 12px;
+                    padding-left: 1.5rem;
+                    padding-right: 1.5rem;
+                    border-left: 0.8px #001E3C solid;
+                    text-decoration: none;
+                    text-transform: uppercase;
+                    font-weight: 600;
+                    font-size: 0.8rem;
                     color: #001E3C;
-    
+                    .icone{
+                        font-size: 1.6em;
+                        color: #001E3C;
+        
+                    }
                 }
             }
             .logo-container{

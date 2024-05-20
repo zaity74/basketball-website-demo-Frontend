@@ -5,11 +5,12 @@ import CartActualite from '../../cart/cart_actualite';
 // Hooks
 import React, { useState, useEffect } from "react";
 import { Link, useParams } from 'react-router-dom';
-import { createBrowserHistory } from 'history';
 import { BsArrowRight } from 'react-icons/bs'
+import Skeleton from '@mui/material/Skeleton';
+import { Grid, Stack } from '@mui/material';
 
 function Actualite(props) {
-    const { articles, ranking } = props;
+    const { articles, ranking, loading } = props;
     // State
     // New constantes
      // New constantes
@@ -29,7 +30,6 @@ function Actualite(props) {
                 </tr>
             </tbody>
       ))
-    console.log(rankingDisplay,'RANKING')
   
     return (
       <>
@@ -44,22 +44,41 @@ function Actualite(props) {
                     </Link>
                 </div>
                 <div className='news-rank-container'>
-                    <div className='news-container'>
+                <div className='news-container'>
+                    {
+                        loading ? <p>Loading...</p> :
                         <CartActualite cart={articles} />
-                    </div> 
-                    <div className='rank'>
-                        <table>
-                            <thead>
-                                <tr>
-                                <th>Position</th>
-                                <th>Équipe</th>
-                                <th>Points</th>
-                                <th>Journées jouées</th>
-                                </tr>
-                            </thead>
-                            {rankingDisplay}
-                        </table>
-                    </div> 
+                    }
+                    </div>
+                    {
+                        loading ? (<p>Loading...</p>) : 
+                        (
+                            <div className='rank'>
+                                <table>
+                                    {
+                                        loading ? 
+                                        (
+                                        <p>Loading...</p>
+                                        ) :
+                                        (
+                                            <>
+                                                <thead>
+                                                    <tr>
+                                                    <th>Position</th>
+                                                    <th>Équipe</th>
+                                                    <th>Points</th>
+                                                    <th>Journées jouées</th>
+                                                    </tr>
+                                                </thead>
+                                                {rankingDisplay}
+                                            </>
+                                        )
+                                    }
+                                </table>
+                            </div> 
+                        )
+                    }
+                    
                 </div>
             </div>
           </section>

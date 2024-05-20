@@ -6,23 +6,50 @@
 #header{
     //margin-top: 85px;
     height: 510px;
-    width: 100%;
     padding-top: 2em;
     padding-bottom: 2em;
+    position: relative;
+    background-image: linear-gradient(0deg, hsla(0, 0%, 100%, .9), rgba(255, 254, 254, .2)),
+    url("https://swissbasketdemo.netlify.app/static/media/background-txt.5b25f2f85c13cdff99df.jpg");
+    background-size: cover;
+    .style-title {
+        position: absolute;
+        font-size: 300px;
+        font-size: 99px;
+        line-height: 85px;
+        left: 2%;
+        top: -49px;
+        transform: rotate(0deg); /* Gardez cette rotation, supprimez la suivante */
+        z-index: 0 !important; /* Assurez-vous que cet élément est derrière les autres */
+        font-family: 'Passion One', sans-serif !important; /* Ajoutez des guillemets pour les polices avec des espaces */
+        font-weight: 400;
+        text-transform: uppercase;
+        -webkit-text-stroke: 2px #000; /* Ajoutez un contour noir */
+        color: transparent;
+        span{
+            color: rgb(175, 175, 175);
+            -webkit-text-stroke: 2px #ffffff;
+        }
+    }
+    
     .article-title{
         position: absolute !important;
         top: 86px;
-        left: -120px;
         width: fit-content;
         height: fit-content;
         margin: 0 !important;
-        color: rgb(23, 22, 22);
-        z-index: 20;
+        color: rgb(255, 255, 255);
+        left: -100px;
+        z-index: 1;
         text-transform: uppercase;
         font-size: 1.4rem;
         font-weight: 700;
         transform: rotate(90deg);
         transition: all 300ms ease-in 0s;
+        background-color: #dd0741;
+        padding-left: 1.2em;
+        padding-right: 1.2em;
+        border: 2px white solid;
     }
     #container-slide{
         height: 100%;
@@ -33,6 +60,7 @@
         display: flex;
         justify-content: center;
         position: relative;
+        z-index: 5;
         /* Carroussel wrapper */ 
         .container { 
             z-index: 1;
@@ -208,6 +236,7 @@
                 flex-direction: column;
                 justify-content: center;
                 align-items: center;
+                border: 2px white solid;
                 //border-left: 3px white solid;
                 transition: 0.6s ease-in-out;
                 position: relative;
@@ -347,20 +376,30 @@
         width: 100%;
         padding-top: 2em;
         padding-bottom: 2em;
+        background-image: linear-gradient(0deg, hsla(0, 0%, 100%, .9), rgba(255, 254, 254, .2)),
+        url("https://swissbasketdemo.netlify.app/static/media/background-txt.5b25f2f85c13cdff99df.jpg");
+        background-size: cover;
+        .style-title {
+            display: none;
+        }
         .article-title{
             position: absolute !important;
             top: 86px;
-            left: -120px;
+            left: -101px;
             width: fit-content;
             height: fit-content;
             margin: 0 !important;
-            color: rgb(23, 22, 22);
-            z-index: 20;
+            color: rgb(255, 255, 255);
+            z-index: 1;
             text-transform: uppercase;
             font-size: 1.4rem;
             font-weight: 700;
             transform: rotate(90deg);
             transition: all 300ms ease-in 0s;
+            background-color: #dd0741;
+            padding-left: 1.2em;
+            padding-right: 1.2em;
+            border: 2px white solid;
         }
         #container-slide{
             height: 70%;
@@ -544,6 +583,7 @@
                     flex-direction: column;
                     justify-content: center;
                     align-items: center;
+                    border: 2px white solid;
                     //border-top: 3px white solid;
                     transition: 0.6s ease-in-out;
                     position: relative;
@@ -685,20 +725,30 @@
         width: 100%;
         padding-top: 2em;
         padding-bottom: 2em;
+        background-image: linear-gradient(0deg, hsla(0, 0%, 100%, .9), rgba(255, 254, 254, .2)),
+        url("https://swissbasketdemo.netlify.app/static/media/background-txt.5b25f2f85c13cdff99df.jpg");
+        background-size: cover;
+        .style-title {
+            display: none;
+        }
         .article-title{
             position: absolute !important;
             top: 86px;
-            left: -120px;
+            left: -100px;
             width: fit-content;
             height: fit-content;
             margin: 0 !important;
-            color: rgb(23, 22, 22);
-            z-index: 20;
+            color: rgb(255, 255, 255);
+            z-index: 1;
             text-transform: uppercase;
             font-size: 1.4rem;
             font-weight: 700;
             transform: rotate(90deg);
             transition: all 300ms ease-in 0s;
+            background-color: #dd0741;
+            padding-left: 1.2em;
+            padding-right: 1.2em;
+            border: 2px white solid;
         }
         #container-slide{
             height: 65%;
@@ -882,6 +932,7 @@
                     flex-direction: column;
                     justify-content: center;
                     align-items: center;
+                    border: 2px white solid;
                     //border-top: 3px white solid;
                     transition: 0.6s ease-in-out;
                     position: relative;
@@ -1022,6 +1073,12 @@
         width: 100%;
         padding-top: 2em;
         padding-bottom: 2em;
+        background-image: linear-gradient(0deg, hsla(0, 0%, 100%, .9), rgba(255, 254, 254, .2)),
+        url("https://swissbasketdemo.netlify.app/static/media/background-txt.5b25f2f85c13cdff99df.jpg");
+        background-size: cover;
+        .style-title {
+            display: none;
+        }
         .article-title{
             position: absolute !important;
             bottom: -31px;
@@ -1217,6 +1274,7 @@
                     height: 6px;
                     border-radius: 6px;
                     cursor: pointer;
+                    border: 2px white solid;
                     background-color: rgb(201, 201, 201);
                     display: flex;
                     flex-direction: column;

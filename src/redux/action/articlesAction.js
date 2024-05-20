@@ -4,14 +4,14 @@ import axios from 'axios';
 // ENV VARIABLE 
 export const listeArticles = (params) => async (dispatch) => {
     try {
-      const { page, category, title, sortField, order } = params;
+      const { page, category, title, sortField, sortOrder } = params;
   
       // Get the data from the API
       dispatch({ type: 'FETCH_ARTICLES_REQUEST' });
-      const response = await axios.get(`https://basket-demo2-website-api.onrender.com/api/v1/articles/`, {
-        params: { page, category, title, sortField, sortOrder: order },
+      const response = await axios.get('https://basket-demo2-website-api.onrender.com/api/v1/articles/', {
+        params: { page, category, title, sortField, sortOrder},
       });
-  
+      
       // Success, return data into action.payload
       dispatch({
         type: 'FETCH_ARTICLES_SUCCESS',

@@ -1,51 +1,64 @@
 // LIBRARY AND COMPONENTS
 import './ProductDetails.scss';
 import Navbar from "../../componnents/header/navbar/login";
-import Banner from "../../componnents/header/banner/page_banner";
 import Footer from '../../componnents/footer/footer';
+import Breadcrumbs from '../../componnents/breadcrumb';
 
 // HOOKS
 import React, { useEffect } from "react";
 import { Link, useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { useState } from "react";
-import { BsChevronLeft } from 'react-icons/bs';
 
-// REDUX IMPORT
+// REDUX ACTION IMPORT
 import { addReview } from '../../redux/action/reviewAction';
 import { produitDetail } from "../../redux/action/productAction";
 import { addToCart } from '../../redux/action/cartAction';
-import { listeProduct } from '../../redux/action/productAction';
 
 function ProductDetails() {
 
   // STATE
   const [qty, setQty] = useState(1);
   const [rating, setRating] = useState(0);
+  const [loading, setLoading] = useState(true);
   const [comment, setComment] = useState("");
 
   //New constantes
   const dispatch = useDispatch();
-  const product = useSelector((state) => state.produitDetail.productDetail.product);
-  const { isLogin, user }  = useSelector(state => state.userLogin);
-  const { products }  = useSelector((state) => state.listProduct.product);
-
   const { id } = useParams();
-  const title = product && product.title;
-  const price = product && product.price;
-  const image = product && product.image;
-  const page = 1;
+
+
+  // API response selector
+  const product = useSelector((state) => state.produitDetail.productDetail.product);
+  const { isLogin }  = useSelector(state => state.userLogin);
+  
 
 
   // PAGE LOAD
   useEffect(() => {
-    dispatch(produitDetail(id))
-    dispatch(listeProduct(page));
-  }, [dispatch, id, page]);
+
+
+    // Fetch single product by id 
+    const fetchSingleProduct = async () => {
+      try{
+        await dispatch(produitDetail(id));
+        setLoading(true)
+  
+      }catch(error){
+        console.error('Erreur lors de la récupération des données:', error);
+      }finally {
+        setLoading(false); // Définir loading à false après la récupération des données
+      }
+    }
+    fetchSingleProduct();
+
+
+  }, [dispatch, id]);
 
 
   // FONCTIONS EVENT
   const handleQuantityChange = (event) => {
+    event.preventDefault();
     const newQuantity = parseInt(event.target.value);
     setQty(newQuantity);
   };
@@ -57,6 +70,7 @@ function ProductDetails() {
   const handleIncreaseQuantity = () => {
     setQty(qty + 1);
   };
+
   const handleReviewSubmit = (e) => {
     e.preventDefault();
     dispatch(addReview(id, {rating, comment})); 
@@ -69,8 +83,13 @@ function ProductDetails() {
      // Attendre que l'action produitDetails soit terminée
   };
 
-  const handleAddToCart = () => {
-    dispatch(addToCart(id,{qty})); 
+  const handleAddToCart = async () => {
+    try{
+       await dispatch(addToCart(id,{qty})); 
+    }catch(error){
+      console.error('Erreur lors de la récupération des données:', error);
+    }
+
      // Attendre que l'action produitDetails soit terminée
   };
 
@@ -86,19 +105,16 @@ function ProductDetails() {
     <Navbar />
         <div class="detail_section">
           <div className="container detail-container">
-            <div className='history'>
-              <BsChevronLeft className='icone' />
-              <Link to={'/boutique'}>
-                boutique / 
-              </Link>
-            </div>
-            {/* DETAILS */}
+            <Breadcrumbs />
+            {/* DETAILS */
+              loading ? (<p>Loading...</p>) :
+            (
             <div className="details">
                 <div className='product-image'>
                     <div className='current-image'>
                       <img 
                       src={product && product.image} 
-                      alt='' />
+                      alt='sport image product' />
                     </div>
                     <div className='extra-images'>
                         {
@@ -122,10 +138,10 @@ function ProductDetails() {
                     <h2>{product && product.title}</h2>
                     <p className='price'> {product && product.price}€</p>
                   </div>
+                  <hr></hr>
                     <p className='description'>
-                      Description : <br></br>
-                      <hr></hr>
-                      {product && product.description}</p>
+                      Description :</p> 
+                      <p>{product && product.description}</p>
                     <p>Rating : {product && product.averageRating}/5</p>
                     <div className='action'>
                       <div className='quantity'>
@@ -141,7 +157,8 @@ function ProductDetails() {
                       <button className='add' onClick={handleAddToCart} >Add to cart</button>
                     </div>
                 </div>
-            </div>
+            </div>)
+            }
             {/* ... */}
             {/* REVIEW */}
             <div className="review">

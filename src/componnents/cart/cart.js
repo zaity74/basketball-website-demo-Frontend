@@ -12,7 +12,16 @@ function Cart(props) {
     // State
     // New constantes
 
-     // New constantes
+    // New constantes
+     const categoryStyles = {
+
+        shorts : { backgroundColor: '#84374E' },
+        accessoires : { backgroundColor: '#222222' },
+        sweetshirts: { backgroundColor: '#A2596C' },
+        jersey: { backgroundColor: '#FFD700' },
+        // Ajoutez plus de catégories et de styles selon vos besoins
+    };
+    
    
 
     // Function
@@ -23,7 +32,7 @@ function Cart(props) {
         <div className='cart' key={index}>
             <div className='image-container'>
                 <img className='image' src={article.image} alt='category picture' />
-                <div className='new'>{article.category}</div>
+                <div style={categoryStyles[article.category] || {}} className='new'>{article.category}</div>
             </div>
             <Link to={`/boutique/${article._id}`} className='title-cart'>{article.title}</Link>
             <div className='text'>

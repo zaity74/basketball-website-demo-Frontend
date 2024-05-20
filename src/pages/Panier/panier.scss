@@ -2,88 +2,112 @@
     width: 100%;
     background-color: #f9f9f9;
     padding-bottom: 4em;
-  
-    .container {
-      max-width: 800px;
-      margin: 0 auto;
-      height: 100%;
-  
-      .item {
-        display: grid;
-        grid-template-columns: 15% 1fr 100px 50px;
-        align-items: center;
-        padding: 10px;
-        border-bottom: 1px solid #ddd;
-        
-
-            .item-image {
-                flex: 0 0 80px;
-                margin-right: 20px;
-                width: 100%;
-        
-                img {
-                  max-width: 100%;
-                  height: auto;
-                }
-              }
+      .container {
+        max-width: 800px;
+        margin: 0 auto;
+        height: 100%;
+      
+        .item {
+            display: grid;
+            grid-template-columns: 15% 1fr 100px 50px;
+            align-items: center;
+            padding: 10px;
+            border-bottom: 1px solid #ddd;
             
-            .item-title {
-                font-size: 18px;
-                font-weight: bold;
-                margin-bottom: 5px;
-            }
-            .item-action{
-                display: flex;
-                flex-direction: column;
-                gap: 20px;
-                .item-price {
-                  font-size: 14px;
-                  color: #888;
-                }
-                .item-quantity {
-                    display: flex;
-                    align-items: center;
-                    gap: 0.5em;
+    
+                .item-image {
+                    flex: 0 0 80px;
+                    margin-right: 20px;
+                    width: 100%;
             
-                    button {
-                      background-color: #db0840;
-                      color: #fff;
-                      border: none;
-                      font-size: 1.4em;
-                      cursor: pointer;
-                      transition: background-color 0.3s;
-            
-                      &:hover {
-                        background-color: #a9002b;
-                      }
-                    }
-            
-                    p {
-                      font-size: 1.02rem;
-                      margin-top: 5px;
-                      text-align: center;
+                    img {
+                      max-width: 100%;
+                      height: auto;
                     }
                   }
-            }
+                .cartLink{
+                  text-decoration: none;
+                  color: black;
+                  transition: 0.2s ease-in-out;
+                  &:hover{
+                    color: #b8113b;
+                  }
+                  .item-title {
+                    font-size: 18px;
+                    font-weight: bold;
+                    margin-bottom: 5px;
+                }
 
-  
-        .item-remove {
-          text-align: center;
-          cursor: pointer;
-          font-size: 1.2rem;
-          color: black;
+                }
+                .item-action{
+                    display: flex;
+                    flex-direction: column;
+                    gap: 20px;
+                    .item-price {
+                      font-size: 14px;
+                      color: #888;
+                    }
+                    .item-quantity {
+                        display: flex;
+                        align-items: center;
+                        gap: 0.5em;
+                
+                        button {
+                          background-color: #db0840;
+                          color: #fff;
+                          border: none;
+                          font-size: 1.4em;
+                          cursor: pointer;
+                          transition: background-color 0.3s;
+                
+                          &:hover {
+                            background-color: #a9002b;
+                          }
+                        }
+                
+                        p {
+                          font-size: 1.02rem;
+                          margin-top: 5px;
+                          text-align: center;
+                        }
+                      }
+                }
+    
+      
+            .item-remove {
+              text-align: center;
+              cursor: pointer;
+              font-size: 1.2rem;
+              color: black;
+            }
+          }
+    
+        .totalPrice {
+          text-align: right;
+          margin-top: 20px;
+          display: flex;
+          justify-content: space-between;
+
+          .clearCart{
+            display: flex;
+            align-items: center;
+            gap: 4px;
+            outline: none;
+            padding: 0.4rem;
+            cursor: pointer;
+            .item-remove{
+              text-align: center;
+              cursor: pointer;
+              font-size: 1.2rem;
+              color: black;
+            }
+          }
+    
+          p {
+            font-size: 18px;
+            font-weight: bold;
+          }
         }
       }
-  
-      .totalPrice {
-        text-align: right;
-        margin-top: 20px;
-  
-        p {
-          font-size: 18px;
-          font-weight: bold;
-        }
-      }
-    }
   }
   

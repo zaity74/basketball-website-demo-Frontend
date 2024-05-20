@@ -78,6 +78,24 @@ export const cartReducer = (state = { cartItems: cartItemsFromStorage }, action)
         
     case 'REMOVE_FROM_CART_FAIL':
       return { ...state, error: action.payload };
+    // CLEAR CART 
+    case 'CLEAR_CART_REQUEST':
+      return {
+        ...state,
+        loading: true,
+      };
+    case 'CLEAR_CART_SUCCESS':
+      return {
+        ...state,
+        cartItems: [],
+        loading: false,
+      };
+    case 'CLEAR_CART_FAIL':
+      return {
+        ...state,
+        loading: false,
+        error: action.payload,
+      };
     default:
       return state;
   }

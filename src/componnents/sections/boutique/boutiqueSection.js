@@ -9,6 +9,7 @@ import { createBrowserHistory } from 'history';
 import { IoIosPlay} from "react-icons/io";
 import { RiStarSFill } from 'react-icons/ri';
 import { BsHeartFill } from 'react-icons/bs';
+import { BsArrowRight } from 'react-icons/bs'
 
 function BoutiqueSection(props) {
     const { product, addCart } = props;
@@ -36,7 +37,10 @@ function BoutiqueSection(props) {
                     <h2 className='title'>
                         #Top Product <br></br>
                     </h2>
-                    <Link className='link' to={'/boutique'}>Go to shopping</Link>
+                    <Link className='link' to={'/boutique'}>
+                        Go to shopping
+                        <BsArrowRight  className='icone' />
+                    </Link>
                 </div>
                 <div className='cart-container'>
                     <Cart cart={product} handleAddToCart={addCart} />

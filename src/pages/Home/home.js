@@ -10,6 +10,7 @@ import Social from '../../componnents/sections/social/social';
 import Footer from '../../componnents/footer/footer';
 import Navbar from '../../componnents/header/navbar/login';
 import PlayersSection from '../../componnents/sections/players/players';
+import Breadcrumbs from '../../componnents/breadcrumb';
 
 // Redux import 
 import { listeArticles } from '../../redux/action/articlesAction';
@@ -21,36 +22,60 @@ import { listeRanking } from '../../redux/action/gamesAction';
 // Hooks
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useParams } from 'react-router-dom';
-import { createBrowserHistory } from 'history';
+import { useLocation, useNavigate} from 'react-router-dom';
 
 function Home(props) {
     // State
+    const [loading, setLoading] = useState(true);
+    
     // New constantes
     const dispatch = useDispatch();
-    const articles  = useSelector((state) => state.listeArticles.article.article);
+    const location = useLocation();
+
+    const articles  = useSelector((state) => state.listeArticles.article.articles);
     const {data}   = useSelector((state) => state.listeMedia.medias);
-    console.log('DATA VIDEO : ', data);
     const products   = useSelector((state) => state.listProduct.product.products);
     const games = useSelector((state) => state.listeGames.games.data);
     const ranking = useSelector((state) => state.listeGames.ranking.data);
-    console.log(ranking, 'ranks');
-    const order = 'asc';
-    const page = 1;
-    const limit = 10;
-    const category = 'cat3';
-    const size = 'l';
+
 
     
   
     // Page load
     useEffect(() => {
-      dispatch(listeArticles({ order, page }));
-      dispatch(listeMedia())
-      dispatch(listeProduct({page, limit, order}))
-      dispatch(listeCalendar());
-      dispatch(listeRanking());
-    }, [dispatch]);
+      const queryParams = new URLSearchParams(location.search);
+      const page = queryParams.get('page') || 1;
+      const sortOrder = queryParams.get('sortOrder') || 'asc';
+      const limit = queryParams.get('limit') || 10;
+
+      // Fetch articles
+      try{
+        const fetchArticles = async () => {
+          await dispatch(listeArticles({ sortOrder, page, limit }));
+        }
+        fetchArticles();
+  
+        // Fetch products
+        const fetchProduct = async () => {
+          await dispatch(listeProduct({page, limit, sortOrder}));
+        }
+        fetchProduct();
+
+        // Other fetch
+        dispatch(listeMedia())
+        dispatch(listeCalendar());
+        dispatch(listeRanking());
+
+        setLoading(true);
+
+      }catch(error){
+        console.error('Erreur lors de la récupération des données:', error);
+      }finally {
+        setLoading(false); // Définir loading à false après la récupération des données
+      }
+
+
+    }, [dispatch, location.search]);
     
     // Events
     const handleAddToCart = (id, qty) => {
@@ -65,11 +90,14 @@ function Home(props) {
       <div className='home-section'>
         <Navbar />
         <Header />
-        <Games gameInfo={games} />
-        <Actualite articles={ articles }  ranking={ranking}/>
+        <Games gameInfo={games} />  
+        <Actualite articles={ articles }  ranking={ranking} loading={loading} />
         <GallerySection  gallery={ data }/>
         <Category />
-        <BoutiqueSection product={ products } addCart={handleAddToCart} />
+        {
+          loading ? (<p>Loading...</p>) : 
+          <BoutiqueSection product={ products } addCart={handleAddToCart} />
+        }
         <Sponsors />
         <Social />
         <Footer />

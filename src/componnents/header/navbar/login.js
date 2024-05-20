@@ -58,10 +58,18 @@ function Navbar(props) {
                     <img className='logo' src='https://cranpringy-basket.com/wp-content/uploads/2022/10/Logo_CPB_petit.png'
                     alt='logo' />
                 </div>
-                <Link className='burger' to={'/'}>
-                  <CgMenuGridR className='icone' />
-                  Accueil
-                </Link>
+                <div className='linkContainer'>
+                  <Link className='burger' to={'/'}>
+                    <CgMenuGridR className='icone' />
+                    Accueil
+                  </Link>
+                  <Link className='burger' to={'/boutique'}>
+                    Boutique
+                  </Link>
+                  <Link className='burger' to={'/blog'}>
+                    Blog
+                  </Link>
+                </div>
                 <div className='login-container'>
                       {
                         isLogin && isLogin ? 

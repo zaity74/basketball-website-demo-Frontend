@@ -2,12 +2,12 @@
 import axios from 'axios'; 
 export const listeProduct = (params) => async (dispatch,getState) => {
     try {
-        const { page, category, title, sortField, order, size, price, limit } = params;
+        const { page, category, title, sortField, sortOrder, size, price, limit } = params;
 
       // Get the data from the API
       dispatch({ type: 'FETCH_PRODUCT_REQUEST' });
-      const response = await axios.get(`https://basket-demo2-website-api.onrender.com/api/v1/products/`, {
-        params: { page, category, title, sortField, sortOrder: order, price, size, limit },
+      const response = await axios.get('https://basket-demo2-website-api.onrender.com/api/v1/products', {
+        params: { page, category, title, sortField, sortOrder, price, size, limit },
       });
   
       // Success, return data into action.payload

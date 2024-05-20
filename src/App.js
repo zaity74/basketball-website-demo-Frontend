@@ -11,6 +11,7 @@ import ProductDetails from "./pages/Boutique/ProductDetails"
 import ArticleDetail from "./pages/Articles/articleDetail"
 import Blog from "./pages/Articles/articles"
 import Panier from "./pages/Panier/panier"
+import Test from "./pages/test"
 
 
 function App(props){
@@ -28,6 +29,7 @@ function App(props){
                         <Route path="/blog" element={<Blog />} />
                         <Route path="/blog/:id" element={<ArticleDetail />} />
                         <Route path="/panier" element={<Panier />} />
+                        <Route path="/test" element={<Test />} />
                     </Routes>
             </Router>
         </>

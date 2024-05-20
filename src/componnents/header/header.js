@@ -19,30 +19,31 @@ function Header(props) {
     // New constantes
     const articles = [
         {
-            "title":"Final ligue des champions à Madrir le réal face au ...",
-            "content":"Après avoir défini psr-4 et le namespace src dans le compose",
+            "title":"4 ajustements pour essayer de sauver des Nuggets au bord du gouffre",
+            "content":
+            " Même si Josh Hart et OG Anunoby vont tenter de jouer la qualification des Knicks en finale de conférence va dépendre en très grosse partie de la performance de Jalen Brunson…",
             "author": 'steave bernanrd',
             "data": "20/12/2030",
-            "category": "first team news",
-            "image": "https://www.swisscentralbasketball.ch/wp-content/uploads/2023/04/Swiss_central_basket_Lugano_tiger_20230413_04-980x551.jpg"
+            "category": "HOT news",
+            "image": "https://www.basketsession.com/statics/uploads/2024/05/DENVER-NUGGETS-strategy.jpg"
 
         },
         {
-            "title":"Final ligue des champions à Madrir le réal face au ...",
-            "content":"Après avoir défini psr-4 et le namespace src dans le compose",
+            "title":"Quel(s) joueur(s) peut faire du Magic une puissance à l’Est ?",
+            "content":"Même si les séries entre les Knicks et les Pacers à l’Est, et les Nuggets et les Wolves à l’Ouest n’ont pas encore révélé",
             "author": 'steave bernanrd',
             "data": "20/12/2030",
-            "category": "first team news",
-            "image":"https://www.swisscentralbasketball.ch/wp-content/uploads/2023/02/Swiss_central_basket_starwings_20230205_03-980x634.jpg"
+            "category": "HOT news",
+            "image":"https://www.basketsession.com/statics/uploads/2024/05/ORLANDO-MAGIC-Banchero-mag.jpg"
 
         },
         {
-            "title":"Final ligue des champions à Madrir le réal face au ...",
-            "content":"Après avoir défini psr-4 et le namespace src dans le compose",
+            "title":"Kristaps Porzingis, un retour qui va se faire attendre…",
+            "content":"C’est près du quartier Pablo-Picasso de Nanterre, une ville où il a grandi et est passé professionnel,",
             "author": 'steave bernanrd',
             "data": "20/12/2030",
-            "category": "First team news",
-            "image" : "https://www.swisscentralbasketball.ch/wp-content/uploads/2022/09/Swiss_central_basket_2022_23-SBL.png"
+            "category": "Hot news",
+            "image" : "https://www.basketsession.com/statics/uploads/2024/04/PORZINGIS-injury-640x332.jpg"
 
         }
     ]
@@ -134,6 +135,17 @@ function Header(props) {
     return (
 
         <section id="header">
+            <h3 className='style-title'>
+                x <br></br>
+            <span>xx</span>
+            <br></br>
+            xxx <br></br>
+            {/* <span style={{color: "#d90715"}}> xoxoxox  </span> */}
+            <span> xoxoxox  </span>
+            <br></br>
+            basketball <br></br>
+            
+            </h3>
             <div id='container-slide' >
                 <h2 className='article-title'>
                     {

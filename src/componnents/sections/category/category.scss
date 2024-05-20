@@ -43,7 +43,7 @@
             .cart-container{
                 width: 100%;
                 display: grid;
-                grid-template-columns: repeat(6, 4fr);
+                grid-template-columns: repeat(4, 2fr);
                 grid-template-rows: repeat(1, 301px);
                 grid-auto-rows: minmax(auto);
                 grid-gap: 16px;
@@ -179,7 +179,7 @@
                 width: 100%;
                 display: grid;
                 grid-template-columns: repeat(6, 4fr);
-                grid-template-rows: repeat(2, 220px);
+                grid-template-rows: repeat(1, 220px);
                 grid-auto-rows: minmax(auto);
                 grid-gap: 16px;
                 align-items: center;
@@ -315,7 +315,7 @@
                 width: 100%;
                 display: grid;
                 grid-template-columns: repeat(3, 4fr);
-                grid-template-rows: repeat(3, 220px);
+                grid-template-rows: repeat(1, 220px);
                 grid-auto-rows: minmax(auto);
                 grid-gap: 16px;
                 align-items: center;

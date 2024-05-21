@@ -22,7 +22,7 @@ function Blog(props) {
     const [loading, setLoading] = useState(true);
     const [categoryTitle, setCategoryTitle] = useState('');
     const [searchTitle, setSearchTitle] = useState('');
-    const [limitPage, setLimitPage] = useState(10);
+    const [limitPage, setLimitPage] = useState(4);
     const [sortCategory, setSortCategory] = useState([]);
     const [sortedField, setSortedField] = useState('') || 'title';
     const [sortedOrder, setSortedOrder] = useState('') || 'asc';
@@ -62,7 +62,7 @@ function Blog(props) {
         setSortedField(sortField);
         const sortOrder = queryParams.get('sortOrder') || 'asc';
         setSortedOrder(sortOrder);
-        const limit = queryParams.get('limit') || 10;
+        const limit = queryParams.get('limit') || 4;
         setLimitPage(limit);
 
         const fetchDataAPI = async() => {

@@ -119,7 +119,13 @@ function Panier(props) {
       <Navbar />
       <div className="panier_section">
         <div className="container">
-          <p style={{fontStyle: 'italic', fontSize: ' 0.9rem'}}>Vous avez {totalItem} produits ajouté à votre panier</p>
+        <div className='top'>
+            <p style={{fontStyle: 'italic', fontSize: ' 0.9rem'}}>Vous avez {totalItem} produits ajouté à votre panier</p>
+            <button className='clearCart' onClick={handleClearCart}>
+              <BsTrash className='item-remove' />
+              Vider le panier
+            </button>
+        </div>
           {
             loading ? <p>Loading...</p> : (
               cartItems && cartItems.length === 0 ? 
@@ -144,10 +150,6 @@ function Panier(props) {
             )
           }
           <div className='totalPrice'>
-            <button className='clearCart' onClick={handleClearCart}>
-              <BsTrash className='item-remove' />
-              Vider le panier
-            </button>
             <p>Prix total : {totalPrice && totalPrice}€</p>
           </div>
         </div>

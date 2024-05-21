@@ -62,3 +62,35 @@ export const articleDetailsReducer = (state = articleDetailInitialState, action)
             return state
     }
 }
+
+// ========= CREATE ARTICLE ===============================
+const articleCreatedInitialState = {
+    articleCreated : [],
+    loading : false,
+    error : null,
+
+}
+
+export const articleCreatedReducer = (state = articleCreatedInitialState, action) => {
+    switch (action.type) {
+        case 'FETCH_CREATE_ARTICLE_REQUEST':
+            return {
+                ...state,
+                loading: true
+            }
+        case 'FETCH_CREATE_ARTICLE_SUCCESS':
+            return {
+                ...state,
+                loading: false,
+                article : action.payload,
+            }
+        case 'FETCH_CREATE_ARTICLE_FAILURE':
+            return {
+                ...state,
+                loading: false,
+                error : action.payload
+            }
+        default:
+            return state
+    }
+}

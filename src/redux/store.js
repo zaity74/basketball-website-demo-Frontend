@@ -15,6 +15,7 @@ import { sizeReducer } from './reducer/sizeReducer';
 import { reviewReducer } from './reducer/reviewReducer';
 import { cartReducer } from './reducer/cartReducer';
 import { gamesReducer } from './reducer/gamesReducer';
+import { articleCreatedReducer } from './reducer/articleReducer';
 
 
 const rootReducer = combineReducers({
@@ -30,6 +31,7 @@ const rootReducer = combineReducers({
   listeReview : reviewReducer,
   addToCart : cartReducer,
   listeGames : gamesReducer,
+  createArticle : articleCreatedReducer
 
 });
 

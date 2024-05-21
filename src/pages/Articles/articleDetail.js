@@ -3,6 +3,7 @@ import './articleDetail.scss';
 import Navbar from "../../componnents/header/navbar/login";
 import Banner from "../../componnents/header/banner/page_banner";
 import Breadcrumbs from '../../componnents/breadcrumb';
+import Footer from '../../componnents/footer/footer';
 
 
 // HOOKS
@@ -15,6 +16,7 @@ import { useState } from "react";
 // REDUX IMPORT
 import { articleDetail } from "../../redux/action/articlesAction";
 import { listeArticles } from '../../redux/action/articlesAction';
+import { Height } from '@mui/icons-material';
 
 function ArticleDetail(props) {
   // STATE
@@ -50,7 +52,10 @@ function ArticleDetail(props) {
   return (
     <>
     <Navbar />
-    <Banner title={''} backgroundImageUrl={'https://www.swisscentralbasketball.ch/wp-content/uploads/2022/09/Swiss_central_basket_2022_23-SBL.png'} />
+    <Banner 
+    title={''} 
+    backgroundImageUrl={'https://www.swisscentralbasketball.ch/wp-content/uploads/2022/09/Swiss_central_basket_2022_23-SBL.png'} 
+    />
         <div class="detail_section">
           <div className="container detail-container">
             <Breadcrumbs />
@@ -66,9 +71,11 @@ function ArticleDetail(props) {
                   </>
                 ))}
                 {/* ... */}
+                <br></br>
+                <div dangerouslySetInnerHTML={{ __html:article && article.description}} />
             </div>
             <div 
-              className="banner" 
+              className="bannerStyle" 
               style={{ 
                 backgroundImage: 
                 `linear-gradient(360deg, rgba(0, 0, 0, 0.57) 0%, rgba(0, 0, 0, 0) 80%), 
@@ -76,7 +83,7 @@ function ArticleDetail(props) {
                 }} >
             </div>
             <div className="content">
-              {article && article.content}
+            <div dangerouslySetInnerHTML={{ __html:article && article.content}} />
             </div>
           </div>
         </div>
@@ -105,6 +112,7 @@ function ArticleDetail(props) {
             )}
           </div>
         </div>
+        <Footer />
 
     </>
   );

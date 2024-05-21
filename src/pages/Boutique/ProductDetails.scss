@@ -4,14 +4,17 @@
         width: 100%;
         display: flex;
         position: relative;
+        background-image: linear-gradient(0deg, hsla(0, 0%, 100%, .9), rgba(255, 254, 254, .2)),
+        url("https://swissbasketdemo.netlify.app/static/media/background-txt.5b25f2f85c13cdff99df.jpg");
+        background-size: contain;
         .container{
             z-index: 1;
-            width: 90%;
+            width: 60%;
             display: flex;
             flex-direction: column;
             row-gap: 40px;
             position: relative;
-            padding-top: 4em;
+            padding-top: 2em;
             padding-bottom: 4em;
             margin: auto;
             .history{
@@ -38,7 +41,7 @@
                     width: 50%;
                     gap: 10px;
                     .current-image{
-                        width: 80%;
+                        width: 100%;
                         height: 480px;
                         margin: auto;
                         display: flex;

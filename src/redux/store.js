@@ -16,11 +16,13 @@ import { reviewReducer } from './reducer/reviewReducer';
 import { cartReducer } from './reducer/cartReducer';
 import { gamesReducer } from './reducer/gamesReducer';
 import { articleCreatedReducer } from './reducer/articleReducer';
+import { forgotPasswordReducer } from './reducer/userReducer';
 
 
 const rootReducer = combineReducers({
   userLogin : userLoginReducer,
   userRegister : userRegisterReducer,
+  forgotPassword : forgotPasswordReducer,
   listeArticles : articleReducer,
   listeMedia : mediaReducer,
   listProduct : productReducer,

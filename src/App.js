@@ -12,6 +12,7 @@ import ArticleDetail from "./pages/Articles/articleDetail"
 import Blog from "./pages/Articles/articles"
 import Panier from "./pages/Panier/panier"
 import Test from "./pages/test"
+import ForgotPwdPage from "./pages/ForgetPwd/forgot_pwd"
 
 
 function App(props){
@@ -30,6 +31,7 @@ function App(props){
                         <Route path="/blog/:id" element={<ArticleDetail />} />
                         <Route path="/panier" element={<Panier />} />
                         <Route path="/test" element={<Test />} />
+                        <Route path="/forgot-password" element={<ForgotPwdPage />} />
                     </Routes>
             </Router>
         </>

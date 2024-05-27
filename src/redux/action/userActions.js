@@ -14,7 +14,7 @@ export const userLogin = (email, password, access) => async (dispatch, getState)
       email,
     }, config);
     // Récupérer le jeton d'authentification
-    const { token, isAdmin } = response.data;
+    const { token } = response.data;
 
     document.cookie = `authToken=${token}; path=/`;
     dispatch({
@@ -23,49 +23,48 @@ export const userLogin = (email, password, access) => async (dispatch, getState)
       });
     localStorage.setItem('loginToken', JSON.stringify(getState().userLogin.user));
     localStorage.setItem('loginInfo', JSON.stringify(getState().userLogin.isLogin));
-    window.location.href = '/';
+    // window.location.href = '/';
     
 
   } catch (error) {
     dispatch({
         type: 'LOGIN_FAILURE',
-        payload: 'Votre mot de passe ou identifiant est incorrect'
+        payload: error.response && error.response.data ? error.response.data : error.message
     })
   }
 };
 
-export const userRegister = (firstname, lastname, email, password) => async (dispatch, getState) => {
+export const userRegister = (firstname, lastname, email, password) => async (dispatch) => {
     try {
-      dispatch({ type: 'REGISTER_REQUEST'})
-      const config = {
-        headers: {
-          'Content-type': 'application/json'
-        }
-      }
-      const response = await axios.post(`https://basket-demo2-website-api.onrender.com/api/v1/users/register`, {
-        firstname,
-        lastname,
-        email,
-        password
-      }, config);
-  
-      console.log('REGISTER :',response.data)
-  
-  
-      dispatch({
-          type: 'REGISTER_SUCCESS',
-          payload: response.data
+        dispatch({ type: 'REGISTER_REQUEST' });
+
+        const config = {
+            headers: {
+                'Content-type': 'application/json'
+            }
+        };
+
+        const response = await axios.post('https://basket-demo2-website-api.onrender.com/api/v1/users/register', {
+            firstname,
+            lastname,
+            email,
+            password,
+        }, config);
+
+        dispatch({
+            type: 'REGISTER_SUCCESS',
+            payload: response.data
         });
-        window.location.href = '/login';
-      
-  
+
     } catch (error) {
-      dispatch({
-          type: 'REGISTER_FAILURE',
-          payload: error.message
-      })
+        dispatch({
+            type: 'REGISTER_FAILURE',
+            payload: error.response && error.response.data ? error.response.data : error.message,
+        });
+        console.log('SHOW ERROR :', error);
     }
 };
+
 
 export const userLogout = () => async (dispatch) =>{
   localStorage.removeItem('loginToken')
@@ -75,4 +74,30 @@ export const userLogout = () => async (dispatch) =>{
   })
 }
 
+export const forgotPassword = (email) => async (dispatch, getState) => {
+  try {
+    dispatch({ type: 'FORGOT_PASSWORD_REQUEST'})
+    const config = {
+      headers: {
+        'Content-type': 'application/json'
+      }
+    }
+    const response = await axios.post(`https://basket-demo2-website-api.onrender.com/api/v1/users/forgot-password`, {
+      email,
+    }, config);
+
+    dispatch({
+        type: 'FORGOT_PASSWORD_SUCCESS',
+        payload: response.data
+      });
+    
+
+  } catch (error) {
+    dispatch({
+        type: 'FORGOT_PASSWORD_FAILURE',
+        payload: error.response.data && error.response.data
+    })
+    console.log('SHOW ERROR :', error);
+  }
+};
 

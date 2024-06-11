@@ -63,7 +63,7 @@ export const createProduct = (params) => async (dispatch,getState) => {
 
     // Get the data from the API
     dispatch({ type: 'PRODUCT_CREATED_REQUEST', });
-    const response = await axios.post('http://localhost:3300/api/v1/products/create-product', params, config);
+    const response = await axios.post('https://basketball-demo.netlify.app/api/v1/products/create-product', params, config);
 
     console.log("SHOW IF PRODUCT IS CREATED", response.data)
 
@@ -88,7 +88,7 @@ export const listeProduct = (params) => async (dispatch,getState) => {
 
       // Get the data from the API
       dispatch({ type: 'FETCH_PRODUCT_REQUEST' });
-      const response = await axios.get(`http://localhost:3300/api/v1/products`, {
+      const response = await axios.get(`https://basketball-demo.netlify.app/api/v1/products`, {
         params: { page, title, gender, colors, category, sortField, sortOrder, price, size, limit }
       });
   
@@ -112,7 +112,7 @@ export const produitDetail = (id)  => async (dispatch,getState) => {
     try {
         // Get the data from the api product
         dispatch({ type: 'FETCH_DETAILS_PRODUCT_REQUEST' })
-        const response = await axios.get(`http://localhost:3300/api/v1/products/${id}`)
+        const response = await axios.get(`https://basketball-demo.netlify.app/api/v1/products/${id}`)
         // Success, return data into action.payload
         dispatch({
             type: 'FETCH_DETAILS_PRODUCT_SUCCESS',
@@ -152,7 +152,7 @@ export const userProductStatus = (params) => async (dispatch,getState) => {
 
     // Get the data from the API
     dispatch({ type: 'USER_PRODUCT_STATUS_REQUEST' });
-    const response = await axios.get('http://localhost:3300/api/v1/products/all-user-product-status', config);
+    const response = await axios.get('https://basketball-demo.netlify.app/api/v1/products/all-user-product-status', config);
 
     // Success, return data into action.payload
     dispatch({
@@ -173,7 +173,7 @@ export const getRelatedProducts = (productId) => async (dispatch) => {
   try {
       dispatch({ type: 'RELATED_PRODUCTS_REQUEST' });
 
-      const response = await axios.get(`http://localhost:3300/api/v1/products/${productId}/related`);
+      const response = await axios.get(`https://basketball-demo.netlify.app/api/v1/products/${productId}/related`);
 
       dispatch({
           type: 'RELATED_PRODUCTS_SUCCESS',

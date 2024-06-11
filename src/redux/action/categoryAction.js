@@ -48,7 +48,7 @@ export const createCategory = (params) => async (dispatch,getState) => {
 
     // Get the data from the API
     dispatch({ type: 'CREATE_CATEGORY_REQUEST', });
-    const response = await axios.post('http://localhost:3300/api/v1/category/create-category', params, config);
+    const response = await axios.post('https://basketball-demo.netlify.app/api/v1/category/create-category', params, config);
 
     console.log("SHOW IF PRODUCT IS CREATED", response.data)
 
@@ -72,7 +72,7 @@ export const listeCategory = () => async (dispatch) => {
   
       // Get the data from the API
       dispatch({ type: 'FETCH_CATEGORY_REQUEST' });
-      const response = await axios.get(`http://localhost:3300/api/v1/category/all`);
+      const response = await axios.get(`https://basketball-demo.netlify.app/api/v1/category/all`);
   
       // Success, return data into action.payload
       dispatch({

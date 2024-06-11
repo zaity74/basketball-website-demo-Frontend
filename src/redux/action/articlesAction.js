@@ -17,7 +17,7 @@ export const listeArticles = (params) => async (dispatch) => {
   
       // Get the data from the API
       dispatch({ type: 'FETCH_ARTICLES_REQUEST' });
-      const response = await axios.get('http://localhost:3300/api/v1/articles/', {
+      const response = await axios.get('https://basketball-demo.netlify.app/api/v1/articles/', {
         params: { page, category, title, sortField, sortOrder},
       });
       
@@ -38,7 +38,7 @@ export const articleDetail = (id)  => async (dispatch,getState) => {
     try {
         // Get the data from the api product
         dispatch({ type: 'FETCH_DETAILS_ARTICLE_REQUEST' })
-        const response = await axios.get(`http://localhost:3300/api/v1/articles/${id}`)
+        const response = await axios.get(`https://basketball-demo.netlify.app/api/v1/articles/${id}`)
         // Success, return data into action.payload
         dispatch({
             type: 'FETCH_DETAILS_ARTICLE_SUCCESS',
@@ -99,7 +99,7 @@ export const createArticle = (params) => async (dispatch, getState) => {
     dispatch({ type: 'FETCH_CREATE_ARTICLE_REQUEST' });
 
     // Faire la requête API pour créer un article
-    const response = await axios.post(`http://localhost:3300/api/v1/articles/create-article/`, body, config);
+    const response = await axios.post(`https://basketball-demo.netlify.app/api/v1/articles/create-article/`, body, config);
 
     // Succès, retourner les données dans action.payload
     dispatch({

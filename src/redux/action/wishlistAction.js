@@ -35,7 +35,7 @@ export const addToWishlist = (id) => async (dispatch, getState) => {
 
     // Faire la requête API pour ajouter un produit au panier
     const response = await axios.post(
-      `http://localhost:3300/api/v1/wishlist/add-to-wishlist/${id}`, {},
+      `https://basketball-demo.netlify.app/api/v1/wishlist/add-to-wishlist/${id}`, {},
       config
     );
 
@@ -89,7 +89,7 @@ export const getAllWishlist = () => async (dispatch, getState) => {
     dispatch({ type: 'WISHLIST_FETCH_REQUEST' });
 
     // Faire la requête API pour afficher les produits du panier en fonction de l'utilisateur
-    const response = await axios.get(`http://localhost:3300/api/v1/wishlist/all-wishlist`, config);
+    const response = await axios.get(`https://basketball-demo.netlify.app/api/v1/wishlist/all-wishlist`, config);
 
     dispatch({
       type: 'WISHLIST_FETCH_SUCCESS',
@@ -128,7 +128,7 @@ export const removeFromWishlist = (id) => async (dispatch, getState) => {
      };
 
       dispatch({ type: 'REMOVE_FROM_WISHLIST_REQUEST' });
-      const response = await axios.delete(`http://localhost:3300/api/v1/wishlist/remove-from-wishlist/${id}`, config);
+      const response = await axios.delete(`https://basketball-demo.netlify.app/api/v1/wishlist/remove-from-wishlist/${id}`, config);
       
 
       dispatch({ 
@@ -168,7 +168,7 @@ export const clearWishlist = () => async (dispatch, getState) => {
 
     dispatch({ type: 'CLEAR_WISHLIST_REQUEST' });
 
-    await axios.delete('http://localhost:3300/api/v1/wishlist/clear-wishlist', config);
+    await axios.delete('https://basketball-demo.netlify.app/api/v1/wishlist/clear-wishlist', config);
 
     dispatch({ type: 'CLEAR_WISHLIST_SUCCESS' });
 

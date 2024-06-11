@@ -4,7 +4,7 @@ export const listeMedia = () => async (dispatch,getState) => {
     try {
       // Get the data from the API
       dispatch({ type: 'FETCH_MEDIA_REQUEST' });
-      const response = await axios.get(`http://localhost:3300/api/v1/medias/all`);
+      const response = await axios.get(`https://basketball-demo.netlify.app/api/v1/medias/all`);
   
       // Success, return data into action.payload
       dispatch({

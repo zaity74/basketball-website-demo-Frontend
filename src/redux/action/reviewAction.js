@@ -37,7 +37,7 @@ export const addReview = (id, params) => async (dispatch, getState) => {
     dispatch({ type: 'FETCH_REVIEW_REQUEST' });
 
     const response = await axios.post(
-      `http://localhost:3300/api/v1/reviews/create-review/${id}`,body ,config
+      `https://basketball-demo.netlify.app/api/v1/reviews/create-review/${id}`,body ,config
     );
 
     dispatch({
@@ -68,7 +68,7 @@ export const removeReview = (id) => async (dispatch,getState) =>{
         }
     };
     try{
-        const response = await axios.delete(`http://localhost:3300/api/product/reviews/${id}`,config);
+        const response = await axios.delete(`https://basketball-demo.netlify.app/api/product/reviews/${id}`,config);
         dispatch({
             type: 'REVIEW_REMOVE',
             payload: response.data

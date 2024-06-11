@@ -35,8 +35,7 @@ function Home(props) {
     const location = useLocation();
     const articles  = useSelector((state) => state.listeArticles.article.articles);
     const loadingArticle = useSelector((state) => state.listeArticles.loading);
-    const {data}   = useSelector((state) => state.listeMedia);
-    console.log('liste media', data);
+    const mediaData = useSelector((state) => state.listeMedia.medias.data);
     const products   = useSelector((state) => state.listProduct.product.products);
     const loadingProduct  = useSelector((state) => state.listProduct.loading);
     const games = useSelector((state) => state.listeGames.games.data);
@@ -53,7 +52,6 @@ function Home(props) {
       const sortOrder = queryParams.get('sortOrder') || 'asc';
       const limit = queryParams.get('limit') || 10;
 
-      console.log('videos :',data);
 
       // Fetch articles
       try{
@@ -99,7 +97,7 @@ function Home(props) {
         <Header />
         <Games gameInfo={games} />  
         <Actualite articles={ articles }  ranking={ranking} loading={loadingArticle} />
-        <GallerySection  gallery={ data }/>
+        <GallerySection  gallery={ mediaData }/>
         <Category />
         {
           <BoutiqueSection product={ products } isAdded={isAdded} setIsAdded={setIsAdded} loading={loadingProduct} />

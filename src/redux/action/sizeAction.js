@@ -43,7 +43,7 @@ export const createSize = (params) => async (dispatch,getState) => {
 
     // Get the data from the API
     dispatch({ type: 'CREATE_SIZE_REQUEST', });
-    const response = await axios.post('https://basketball-demo.netlify.app/api/v1/sizes/create-size', params, config);
+    const response = await axios.post('https://basket-demo2-website-api.onrender.com/api/v1/sizes/create-size', params, config);
 
     // Success, return data into action.payload
     dispatch({
@@ -65,7 +65,7 @@ export const listeSizes = () => async (dispatch) => {
   
       // Get the data from the API
       dispatch({ type: 'FETCH_SIZE_REQUEST' });
-      const response = await axios.get('https://basketball-demo.netlify.app/api/v1/sizes/all');
+      const response = await axios.get('https://basket-demo2-website-api.onrender.com/api/v1/sizes/all');
   
       // Success, return data into action.payload
       dispatch({

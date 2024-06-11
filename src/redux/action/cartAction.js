@@ -42,7 +42,7 @@ export const addToCart = (id, params) => async (dispatch, getState) => {
 
     // Faire la requête API pour ajouter un produit au panier
     const response = await axios.post(
-      `https://basketball-demo.netlify.app/api/v1/cart/add-to-cart/${id}`,
+      `https://basket-demo2-website-api.onrender.com/api/v1/cart/add-to-cart/${id}`,
       body,
       config
     );
@@ -98,7 +98,7 @@ export const getCartItems = () => async (dispatch, getState) => {
     dispatch({ type: 'CART_FETCH_REQUEST' });
 
     // Faire la requête API pour afficher les produits du panier en fonction de l'utilisateur
-    const response = await axios.get(`https://basketball-demo.netlify.app/api/v1/cart/all`, config);
+    const response = await axios.get(`https://basket-demo2-website-api.onrender.com/api/v1/cart/all`, config);
 
     dispatch({
       type: 'CART_FETCH_SUCCESS',
@@ -139,7 +139,7 @@ export const decreaseCartItem = (id) => async (dispatch, getState) => {
     dispatch({ type: 'DECREASE_CART_REQUEST' });
 
     // Effectuer la requête pour diminuer la quantité dans le backend (si nécessaire)
-    const response = await axios.put(`https://basketball-demo.netlify.app/api/v1/cart/decrease/${id}`,{}, config);
+    const response = await axios.put(`https://basket-demo2-website-api.onrender.com/api/v1/cart/decrease/${id}`,{}, config);
 
     dispatch({ 
       type: 'DECREASE_CART_SUCCESS', 
@@ -181,7 +181,7 @@ export const increaseCartItem = (id) => async (dispatch, getState) => {
     dispatch({ type: 'INSCREASE_CART_REQUEST' });
 
     // Effectuer la requête pour diminuer la quantité dans le backend (si nécessaire)
-    const response = await axios.put(`https://basketball-demo.netlify.app/api/v1/cart/increase/${id}`,{}, config);
+    const response = await axios.put(`https://basket-demo2-website-api.onrender.com/api/v1/cart/increase/${id}`,{}, config);
 
     dispatch({ 
       type: 'INCREASE_CART_SUCCESS', 
@@ -221,7 +221,7 @@ export const removeCart = (id) => async (dispatch, getState) => {
      };
 
       dispatch({ type: 'REMOVE_FROM_CART_REQUEST' });
-      const response = await axios.delete(`https://basketball-demo.netlify.app/api/v1/cart/remove-to-cart/${id}`, config);
+      const response = await axios.delete(`https://basket-demo2-website-api.onrender.com/api/v1/cart/remove-to-cart/${id}`, config);
       
 
       dispatch({ 
@@ -261,7 +261,7 @@ export const clearCart = () => async (dispatch, getState) => {
 
     dispatch({ type: 'CLEAR_CART_REQUEST' });
 
-    await axios.delete('https://basketball-demo.netlify.app/api/v1/cart/clear', config);
+    await axios.delete('https://basket-demo2-website-api.onrender.com/api/v1/cart/clear', config);
 
     dispatch({ type: 'CLEAR_CART_SUCCESS' });
 

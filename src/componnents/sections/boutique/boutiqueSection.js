@@ -12,7 +12,7 @@ import { BsHeartFill } from 'react-icons/bs';
 import { BsArrowRight } from 'react-icons/bs'
 
 function BoutiqueSection(props) {
-    const { product, isAdded, setIsAdded } = props;
+    const { product, isAdded, setIsAdded, loading } = props;
     // State
 
     // EFFECTS
@@ -22,8 +22,10 @@ function BoutiqueSection(props) {
     // Variables
   
     return (
-      <>
-          <section style={{paddingbottom: '4em'}} id="boutique">
+      <>{
+        loading ? <p>Loading</p> : 
+        (
+            <section style={{paddingbottom: '4em'}} id="boutique">
             <div className='container'>
                 <div className='title-container'>
                     <h2 className='title'>
@@ -39,6 +41,9 @@ function BoutiqueSection(props) {
                 </div>
             </div>
           </section>
+
+        )
+      }
       </>
     );
   }

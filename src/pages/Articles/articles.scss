@@ -1,8 +1,10 @@
 #articles{
     width: 100%;
+    max-width: 1500px;
     display: flex;
     position: relative;
     padding-bottom: 4em;
+    margin: auto;
 
     .container{
         z-index: 1;

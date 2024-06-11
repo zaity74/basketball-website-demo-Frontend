@@ -1,8 +1,11 @@
 import './category.scss';
 
 // Redux import 
+import { listeCategory } from '../../../redux/action/categoryAction';
 // Hooks
 import React, { useState, useEffect } from "react";
+import { useDispatch } from 'react-redux';
+import { useSelector } from 'react-redux';
 import { Link, useParams } from 'react-router-dom';
 import { createBrowserHistory } from 'history';
 import { IoIosPlay} from "react-icons/io";
@@ -36,22 +39,45 @@ function Category(props) {
         },
     ])
     // New constantes
-     // New constantes
+    const dispatch = useDispatch();
+    const { loading, error } = useSelector((state) => state.listCategory);
+    const allCategory = useSelector((state) => state.listCategory.category.data);
+    console.log('liste category', allCategory);
+     
+    // EFFECTS 
+     // Page load
+     useEffect(() => {
+
+        const fetchDataAPI = async() => {
+            try{
+                await dispatch(listeCategory());
+            }catch(error){
+                console.error('Erreur lors de la récupération des données:', error);
+            }
+        }
+
+        fetchDataAPI();
+        
+      }, [dispatch]);
    
 
     // Function
       
 
 
-    const categoryDisplay = category.map((article, index) => (
+    const categoryDisplay = allCategory && allCategory.map((article, index) => (
         <div className='cart' key={index}>
-            <img className='image' src={article.image} alt='category picture' />
-            <div className='overlay'></div>
-                <div className='text'>
-                    <Link to={`/boutique/?category=${article.category}`} className='link'>
-                        Find your {article.category}
-                    </Link>
-                </div>
+            {
+                <>
+                    <img className='image' src={article.image} alt='category picture' />
+                        <div className='overlay'></div>
+                        <div className='text'>
+                            <Link to={article.type === "boutique" ? `/boutique/?category=${article.name}` : `/blog/?category=${article.name}` } className='link'>
+                                 {article.name}
+                            </Link>
+                        </div>
+                </>
+            }
         </div>
       ))
 

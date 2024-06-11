@@ -11,8 +11,10 @@ import { listeCategory } from '../../redux/action/categoryAction';
 import { listeSizes } from '../../redux/action/sizeAction';
 import { addToCart } from '../../redux/action/cartAction';
 import { getCartItems } from '../../redux/action/cartAction';
+
 // Hooks
 import React, { useState, useEffect } from "react";
+import { useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from "react-redux";
 import { useLocation, useNavigate} from 'react-router-dom';
 import { BsSearch } from 'react-icons/bs';
@@ -23,23 +25,27 @@ function Boutique(props) {
 
     // STATE
     const [isCatClicked, setIsCatClicked] = useState(false);
+    const [isGenderClick, setIsGenderClick] = useState(false);
     const [isPriceClicked, setIsPriceClicked] = useState(false);
     const [isSortClicked, setIsSortClicked] = useState(false);
-    const [loading, setLoading] = useState(true);
+    const [isColorClicked, setIsColorClicked] = useState(false);
     const [categoryTitle, setCategoryTitle] = useState('');
     const [searchTitle, setSearchTitle] = useState('');
     const [sortPrice, setSortPrice] = useState('');
+    const [sortGender, setSortGender] = useState([]);
     const [limitPage, setLimitPage] = useState(10);
     const [sortCategory, setSortCategory] = useState([]);
+    const [sortColors, setSortColors] = useState([]);
     const [sortedField, setSortedField] = useState('title');
     const [sortedOrder, setSortedOrder] = useState('asc');
     const [currentPage, setCurrentPage] = useState(1);
-    const [isAdded, setIsAdded] = useState({});
+    const [loadingDelay, setLoadingDelay] = useState(true);
 
     // DATA RESPONSE AND USE CONSTANTE
-    const { products, pagination, total, productPerPage } = useSelector((state) => state.listProduct.product);
+    const { products, pagination, total, productPerPage, allColors } = useSelector((state) => state.listProduct.product);
+    const { loading } = useSelector((state) => state.listProduct);
     const allCategory = useSelector((state) => state.listCategory.category.data);
-    const { cartItems } = useSelector((state) => state.addToCart.cartItems);
+    const { cartItems } = useSelector((state) => state.allCartItems.cartItems);
     const dispatch = useDispatch();
     const location = useLocation();
     const navigate = useNavigate();
@@ -49,6 +55,8 @@ function Boutique(props) {
 
     // EFFECTS 
     useEffect(() => {
+
+        // Get query parameters and affect them to useState constante
         const queryParams = new URLSearchParams(location.search);
         const page = queryParams.get('page') || 1;
         const category = queryParams.get('category') || '';
@@ -61,22 +69,38 @@ function Boutique(props) {
         }
         const title = queryParams.get('title') || '';
         setSearchTitle(title);
+        const colors = queryParams.get('colors') || '';
+        if (colors) {
+            setSortColors(colors.split(','));
+        } else {
+            setSortColors([]);
+        }
         const sortField = queryParams.get('sortField') || 'title';
         setSortedField(sortField);
         const sortOrder = queryParams.get('sortOrder') || 'asc';
         setSortedOrder(sortOrder);
         const price = queryParams.get('price') || '';
         setSortPrice(price);
+        const gender = queryParams.get('gender') || '';
+        setSortGender(gender);
+        if (gender) {
+            setSortGender(gender.split(','));
+        } else {
+            setSortGender([]);
+        }
         const size = queryParams.get('size') || '';
         const limit = queryParams.get('limit') || 10;
         setLimitPage(limit);
 
+        // Load products, category and sizes action
         const fetchListeDeProduit = async () => {
             try {
                 await dispatch(listeProduct({
                     page,
                     category,
                     title,
+                    colors,
+                    gender,
                     sortField,
                     sortOrder,
                     price,
@@ -87,18 +111,21 @@ function Boutique(props) {
                 await dispatch(listeSizes());
             } catch (error) {
                 console.error('Erreur lors de la récupération des données:', error);
-            } finally {
-                setLoading(false);
             }
         };
         fetchListeDeProduit();
+
     }, [dispatch, location.search]);
 
+    // EFFECTS 2
     useEffect(() => {
+    
+        // Au chargement de la page le state currentPage prend la valeur du parametre page
       const queryParams = new URLSearchParams(location.search);
       const page = parseInt(queryParams.get('page')) || 1;
       setCurrentPage(page);
-  
+        
+    // Si page est egale a une page sans produit, revenir a la premiere page
       const nonEmptyPages = productPerPage ? productPerPage.filter(pageData => pageData.count > 0) : [];
       if (page > nonEmptyPages.length && nonEmptyPages.length > 0) {
           setCurrentPage(1);
@@ -106,6 +133,16 @@ function Boutique(props) {
           navigate({ search: queryParams.toString() });
       }
   }, [location.search, total, limitPage, productPerPage]);
+
+  // EFFECTS 3
+  useEffect(() => {
+    const loadingTimer = setTimeout(() => {
+        setLoadingDelay(false);
+      }, 1000); // Délai de 1 seconde avant de masquer le chargement
+  
+      return () => clearTimeout(loadingTimer);
+   
+  }, []);
 
   
 
@@ -116,9 +153,8 @@ function Boutique(props) {
       queryParams.set('page', pageIndex);
       navigate({ search: queryParams.toString() });
       setCurrentPage(pageIndex);
-  };
+    };
   
-
     const handleCategoryChange = (event) => {
         const queryParams = new URLSearchParams(location.search);
         const selectedCategory = event.target.value;
@@ -163,6 +199,29 @@ function Boutique(props) {
         navigate({ search: queryParams.toString() });
     };
 
+    const handleGenderChange = (event) => {
+        const queryParams = new URLSearchParams(location.search);
+        const selectedGender = event.target.value;
+        const isChecked = event.target.checked;
+
+        let updatedGender = [...sortGender];
+        if (isChecked) {
+            if (!updatedGender.includes(selectedGender)) {
+                updatedGender.push(selectedGender);
+            }
+        }else{
+            updatedGender = updatedGender.filter(cat => cat !== selectedGender);
+        }
+
+        if (updatedGender.length > 0) {
+            queryParams.set('gender', updatedGender.join(','));
+        } else {
+            queryParams.delete('gender');
+        }
+
+        navigate({ search: queryParams.toString() });
+    };
+
     const handleSearchChange = (event) => {
         event.preventDefault();
         const newTitle = event.target.value;
@@ -171,9 +230,35 @@ function Boutique(props) {
         queryParams.set('title', newTitle);
         navigate({ search: queryParams.toString() });
     };
+    const handleSortByColors = (event) =>{
+        const queryParams = new URLSearchParams(location.search);
+        const selectedColors = event.target.value;
+        const isChecked = event.target.checked;
 
+        let updatedColors = [...sortColors];
+        if (isChecked) {
+            if (!updatedColors.includes(selectedColors)) {
+                updatedColors.push(selectedColors);
+            }
+        }else{
+            updatedColors = updatedColors.filter(cat => cat !== selectedColors);
+        }
+
+        if (updatedColors.length > 0) {
+            queryParams.set('colors', updatedColors.join(','));
+        } else {
+            queryParams.delete('colors');
+        }
+
+        navigate({ search: queryParams.toString() });
+    }
+
+    // TOGGLE METHODS
     const toggleCat = () => {
         setIsCatClicked(!isCatClicked);
+    };
+    const toggleColor = () => {
+        setIsColorClicked(!isColorClicked);
     };
     const togglePrice = () => {
         setIsPriceClicked(!isPriceClicked);
@@ -182,6 +267,11 @@ function Boutique(props) {
         setIsSortClicked(!isSortClicked);
     };
 
+    const toggleGender = () => {
+        setIsGenderClick(!isGenderClick);
+    };
+
+    // MAPing 
     const categoryDisplay = allCategory && allCategory.map((cat, index) => (
         <div key={index} className='priceBlock'>
             {cat.type === 'boutique' && (
@@ -202,51 +292,88 @@ function Boutique(props) {
         </div>
     ));
 
+    const colorsDisplay = allColors && allColors.map((col, index) => (
+        <div key={index} className='priceBlock'>
+                <div className='priceBlock'>
+                    <div className='select'>
+                        <input
+                            type="checkbox"
+                            name="colors"
+                            id={`colors-${col}`}
+                            value={col}
+                            checked={sortColors.includes(col)}
+                            onChange={handleSortByColors}
+                        />
+                        <label htmlFor={`colors-${col}`}>{col}</label>
+                    </div>
+                </div>
+        </div>
+    ));
+
+    const gendersAutorize = ["men", "women", "mixte"]; 
+    const genderDisplay = gendersAutorize && gendersAutorize.map((gender, index) => (
+        <div key={index} className='priceBlock'>
+                <div className='priceBlock'>
+                    <div className='select'>
+                        <input
+                            type="checkbox"
+                            name="gender"
+                            id={`gender-${gender}`}
+                            value={gender}
+                            checked={sortGender.includes(gender)}
+                            onChange={handleGenderChange}
+                        />
+                        <label htmlFor={`gender-${gender}`}>{gender}</label>
+                    </div>
+                </div>
+        </div>
+    ));
+
     const priceDisplay = (
         <div className='priceBlock'>
             <div className='select'>
                 <input
                     type="checkbox"
                     name="price"
-                    id="price-0-10"
-                    value="0-10"
-                    checked={sortPrice === "0-10"}
+                    id="price-0-50"
+                    value="0-50"
+                    checked={sortPrice === "0-50"}
                     onChange={handlePriceChange}
                 />
-                <label htmlFor="price-0-10">0-10</label>
+                <label htmlFor="price-0-50">0-50</label>
             </div>
             <div className='select'>
                 <input
                     type="checkbox"
                     name="price"
-                    id="price-10-20"
-                    value="10-20"
-                    checked={sortPrice === "10-20"}
+                    id="price-50-100"
+                    value="50-100"
+                    checked={sortPrice === "50-100"}
                     onChange={handlePriceChange}
                 />
-                <label htmlFor="price-10-20">10-20</label>
+                <label htmlFor="price-50-100">50-100</label>
             </div>
             <div className='select'>
                 <input
                     type="checkbox"
                     name="price"
-                    id="price-20-30"
-                    value="20-30"
-                    checked={sortPrice === "20-30"}
+                    id="price-100-200"
+                    value="100-200"
+                    checked={sortPrice === "100-200"}
                     onChange={handlePriceChange}
                 />
-                <label htmlFor="price-20-30">20-30</label>
+                <label htmlFor="price-100-200">100-200</label>
             </div>
             <div className='select'>
                 <input
                     type="checkbox"
                     name="price"
-                    id="price-30-40"
-                    value="30-40"
-                    checked={sortPrice === "30-40"}
+                    id="price+200"
+                    value="200"
+                    checked={sortPrice >= "200"}
                     onChange={handlePriceChange}
                 />
-                <label htmlFor="price-30-40">30-40</label>
+                <label htmlFor="price+200">+200</label>
             </div>
         </div>
     );
@@ -329,12 +456,30 @@ function Boutique(props) {
                         <div className='slide-filter-container'>
                             <ul className='displayed-container'>
                                 <ul className='selector'>
+                                    <h3 onClick={toggleGender}>
+                                        Gender
+                                        <BsPlusLg className='icone' />
+                                    </h3>
+                                    <ul style={{ display: isGenderClick? 'block' : 'none' }} className='block'>
+                                        {genderDisplay}
+                                    </ul>
+                                </ul>
+                                <ul className='selector'>
                                     <h3 onClick={toggleCat}>
                                         Categorie
                                         <BsPlusLg className='icone' />
                                     </h3>
                                     <ul style={{ display: isCatClicked ? 'block' : 'none' }} className='block'>
                                         {categoryDisplay}
+                                    </ul>
+                                </ul>
+                                <ul className='selector'>
+                                    <h3 onClick={toggleColor}>
+                                        Colors
+                                        <BsPlusLg className='icone' />
+                                    </h3>
+                                    <ul style={{ display: isColorClicked ? 'block' : 'none' }} className='block'>
+                                        {colorsDisplay}
                                     </ul>
                                 </ul>
                                 <ul className='selector'>
@@ -358,12 +503,12 @@ function Boutique(props) {
                             </ul>
                         </div>
                     </div>
-                    <Breadcrumbs />
+                    <Breadcrumbs total={total} />
                     <div className='cart-container'>
                         {
-                            loading ? 
+                            loading || loadingDelay ? 
                             (<p>Loading...</p>) : 
-                            (<Cart cart={products}  isAdded={isAdded} setIsAdded={setIsAdded} />)
+                            (<Cart cart={products} listeProduct={listeProduct} />)
                         }
                     </div>
                     <div className='pagination'>

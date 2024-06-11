@@ -66,7 +66,7 @@ function ArticleDetail(props) {
                 {article && article.user.map((user, index) => (
                   <>
                     <p key={index}>
-                      Author : {user.firstname} {user.lastname}
+                      Author : {user.name.firstname} {user.name.lastname}
                     </p>
                   </>
                 ))}

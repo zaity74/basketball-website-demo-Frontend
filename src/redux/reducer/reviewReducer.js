@@ -14,13 +14,13 @@ export const reviewReducer = (state = reviewState, action) => {
         case 'FETCH_REVIEW_REQUEST':
             return {
             ...state,
-            loading: false,
+            loading: true,
             };
         case 'FETCH_REVIEW_SUCCESS':
             return {
                 ...state,
                 review: action.payload,
-                loading: true,
+                loading: false,
             };
  
         case 'FETCH_REVIEW_FAILURE':

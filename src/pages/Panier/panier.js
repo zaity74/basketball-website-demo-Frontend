@@ -1,14 +1,9 @@
-// LIBRARY AND COMPONENTS
 import './panier.scss';
-import Navbar from "../../componnents/header/navbar/login";
+import Navbar from '../../componnents/header/navbar/login';
 import Footer from '../../componnents/footer/footer';
 import Breadcrumbs from '../../componnents/breadcrumb';
-
-// REDUX IMPORT
 import { getCartItems, decreaseCartItem, increaseCartItem, removeCart, clearCart } from '../../redux/action/cartAction';
 import { listeProduct } from '../../redux/action/productAction';
-
-// HOOKS
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from 'react-redux';
 import { BsTrash } from 'react-icons/bs';
@@ -17,141 +12,138 @@ import { Link } from 'react-router-dom';
 function Panier(props) {
 
   // STATE
-  const [loading, setLoading] = useState(true);
   const [isAdded, setIsAdded] = useState({});
   const [totalCartItems, setTotalCartItems] = useState(0);
+  const [loadingDelay, setLoadingDelay] = useState(true);
 
   // DATA AND USE CONSTANTE
   const dispatch = useDispatch();
-  const { cartItems, totalPrice, totalItem } = useSelector((state) => state.addToCart.cartItems);
-  const products   = useSelector((state) => state.listProduct.product.products);
-
-
+  const { cartItems, totalPrice, totalItem } = useSelector((state) => state.allCartItems.cartItems);
+  const { loading, error } = useSelector((state) => state.allCartItems);
+  const isLogin  = useSelector(state => state.userLogin.isLogin);
 
   // EFFECTS
   useEffect(() => {
     const fetchCartItems = async() => {
-      try{
-        const listePanier = await dispatch(getCartItems());
-        setLoading(true);
-        return listePanier;
-      }catch(error){
+      try {
+        await dispatch(getCartItems());
+      } catch (error) {
         console.log("nous avons pas pu récupérer les données", error);
-      }finally {
-        setLoading(false); // Définir loading à false après la récupération des données
       }
     }
     fetchCartItems();
 
-    // Fetch products
     const fetchProduct = async () => {
       await dispatch(listeProduct({}));
     }
     fetchProduct();
-    
+
+    const loadingTimer = setTimeout(() => {
+      setLoadingDelay(false);
+    }, 1000); // Délai de 1 seconde avant de masquer le chargement
+
+    return () => clearTimeout(loadingTimer);
 
   }, [dispatch, totalPrice]);
 
-  // FONCTIONS EVENT
-  const decreaseQuantity = (id) => {
-    dispatch(decreaseCartItem(id));
+  // FUNCTIONS
+  const decreaseQuantity = async (id) => {
+    await dispatch(decreaseCartItem(id));
+    await dispatch(getCartItems());
   };
 
-  const increaseQuantity = (id) => {
-    dispatch(increaseCartItem(id));
+  const increaseQuantity = async (id) => {
+    await dispatch(increaseCartItem(id));
+    await dispatch(getCartItems());
   };
 
-  const removeItem = async(id, name) => {
+  const removeItem = async(id) => {
     try {
-      // Supprimer l'élément du panier
-      const removeSingleItem = await dispatch(removeCart(id));
-
-      // Recuperer les ids
-      const itemAlreadyExist = products && products.find((cart) => cart.title === name);
-      const newId = itemAlreadyExist._id;
-  
-      // Récupérer les produits ajoutés depuis le localStorage
-      const savedIsAdded = JSON.parse(localStorage.getItem("addedProducts"));
-
-      console.log('ID :', newId);
-      console.log('savedId :', savedIsAdded);
-  
-      // Si aucun produit n'est enregistré, il n'y a rien à faire
-      if (!savedIsAdded) {
-        return removeSingleItem;
-      }
-      // Filtrer les clés différentes de l'ID
-      const filteredKeys = Object.keys(savedIsAdded).filter(key => key !== newId);
-  
-      // Créer un nouvel objet à partir des clés filtrées et les valeurs correspondantes
-      const updatedIsAdded = filteredKeys.reduce((acc, key) => {
-        acc[key] = savedIsAdded[key];
-        return acc;
-      }, {});
-  
-      console.log(updatedIsAdded, 'find here');
-  
-      // Mettre à jour `addedProducts` dans l'état et le localStorage
-      localStorage.setItem("addedProducts", JSON.stringify(updatedIsAdded));
-  
-      return removeSingleItem;
+      await dispatch(removeCart(id));
+      await dispatch(getCartItems());
     } catch(error) {
       console.error('Erreur lors de la suppression de l\'élément du panier:', error);
     }
   };
-  
-  
 
   const handleClearCart = async() => {
-    try{
-      const removeAllItems = await dispatch(clearCart());
+    try {
+      await dispatch(clearCart());
       localStorage.removeItem("addedProducts");
-      return removeAllItems;
-    }catch(error){
+      await dispatch(getCartItems());
+    } catch(error) {
       console.error('Erreur lors de la récupération des données:', error);
     }
   };
-
-  // CONSTANTES
 
   return (
     <>
       <Navbar />
       <div className="panier_section">
         <div className="container">
-        <div className='top'>
-            <p style={{fontStyle: 'italic', fontSize: ' 0.9rem'}}>Vous avez {totalItem} produits ajouté à votre panier</p>
-            <button className='clearCart' onClick={handleClearCart}>
-              <BsTrash className='item-remove' />
-              Vider le panier
-            </button>
-        </div>
-          {
-            loading ? <p>Loading...</p> : (
-              cartItems && cartItems.length === 0 ? 
-              <h2>Votre panier est vide...</h2> :
-              cartItems && cartItems.map((cart, index) => (
-                   <div className='item' key={index}>
-                    <img className='item-image' src={cart.image} alt='cart item' />
-                    <Link className='cartLink' to={`/boutique/${cart._id}`}>
-                      <h3 className='item-title'>{cart.name}</h3>
-                    </Link>
-                    <div className='item-action'>
-                      <p className='item-price'>Price: {cart.price}€</p>
-                      <div className='item-quantity'>
-                        <button onClick={() => decreaseQuantity(cart._id)}>-</button>
-                        <p>Quantity: {cart.qty}</p>
-                        <button onClick={() => increaseQuantity(cart._id)}>+</button>
-                      </div>
-                      <BsTrash className='item-remove' onClick={() => removeItem(cart._id, cart.name)} />
-                    </div>
+          {error && !isLogin ? (
+            <div className='logoutUser'>
+              <p>
+                You need to be logged in to add items to the cart, please <br></br> <Link to={'/login'}>log in</Link> or <Link to={'/register'}>create an account</Link>.
+              </p>
+            </div>
+          ) : loading || loadingDelay ? (
+            <p className="loading show">Loading...</p>
+          ) : (
+            <div className="cart_content  show">
+              <div className="cart_items">
+                {cartItems && cartItems.length === 0 ? (
+                  <>
+                  <h2>Votre panier est actuellement vide...</h2>
+                  <div>
+                    <Link to={'/boutique'}>Continuer mes achats</Link>
                   </div>
-            ))
-            )
-          }
-          <div className='totalPrice'>
-            <p>Prix total : {totalPrice && totalPrice}€</p>
-          </div>
+                  </>
+                ) : (
+                <>
+                  <div className="top">
+                    <p style={{ fontStyle: 'italic', fontSize: '0.9rem' }}>
+                      Vous avez {totalItem ? totalItem : 0} produits ajoutés à votre panier
+                    </p>
+                    <button className="clearCart" onClick={handleClearCart}>
+                      <BsTrash className="item-remove" />
+                      Vider le panier
+                    </button>
+                  </div>
+                  {
+                    cartItems && cartItems.map((cart, index) => (
+                      <div className="item" key={index}>
+                        <img className="item-image" src={cart.image} alt="cart item" />
+                        <Link className="cartLink" to={`/boutique/${cart.product}`}>
+                          <h3 className="item-title">{cart.name}</h3>
+                        </Link>
+                        <div className="item-action">
+                          <p className="item-price">Price: {cart.price}€</p>
+                          <div className="item-quantity">
+                            <button onClick={() => decreaseQuantity(cart._id)}>-</button>
+                            <p>Quantity: {cart.qty}</p>
+                            <button onClick={() => increaseQuantity(cart._id)}>+</button>
+                          </div>
+                          <BsTrash className="item-remove" onClick={() => removeItem(cart._id)} />
+                        </div>
+                        <img className='logo' src='https://cranpringy-basket.com/wp-content/uploads/2022/10/Logo_CPB_petit.png'
+                        alt='logo' />
+                      </div>
+                    ))
+                  }
+                  </>
+                )}
+              </div>
+              <div className="cart_summary">
+                <h2>Résumé du panier</h2>
+                <div className="summary_item">
+                  <p>Total Items: {totalItem}</p>
+                  <p>Total Price: {totalPrice && totalPrice}€</p>
+                </div>
+                <button className="checkout_btn">Passer à la caisse</button>
+              </div>
+            </div>
+          )}
         </div>
       </div>
       <Footer />
@@ -160,3 +152,5 @@ function Panier(props) {
 }
 
 export default Panier;
+
+

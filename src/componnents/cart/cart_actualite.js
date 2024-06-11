@@ -18,6 +18,11 @@ function CartActualite(props) {
         const formattedDate = date.toLocaleDateString("en-GB");
         return formattedDate;
       };
+    
+    const stripHtmlTags = (html) => {
+      const doc = new DOMParser().parseFromString(html, 'text/html');
+      return doc.body.textContent || "";
+    };
 
 
     // Variables  
@@ -33,7 +38,7 @@ function CartActualite(props) {
                     <img className='image' src={article.banner} alt='article image' />
                     <div className='text'>
                         <Link to={`/blog/${article._id}`}><h3>{article.title}</h3></Link>
-                        <p className="content">{article.content.slice(0, 200)}{article.content.length > 100 ? '...' : ''}</p>
+                        <p className="content">{stripHtmlTags(article.content).slice(0, 200)}{stripHtmlTags(article.content).length > 100 ? '...' : ''}</p>
                         <p>{formatDate(article.createdAt)}</p>
                     </div>
             </div>

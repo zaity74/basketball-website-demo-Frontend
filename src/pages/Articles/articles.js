@@ -31,6 +31,7 @@ function Blog(props) {
     // New constantes
     const { articles, pagination, total, productPerPage  }  = useSelector((state) => state.listeArticles.article);
     const allCategory = useSelector((state) => state.listCategory.category.data);
+    console.log('category type', allCategory)
 
     // Pagination variables
     const nextPage = pagination && pagination.next ? pagination.next.page : null;
@@ -173,7 +174,7 @@ function Blog(props) {
     // Variables
     const categoryDisplay = allCategory && allCategory.map((cat, index) => (
         <div key={index} className='priceBlock'>
-          {cat.type === 'article' && (
+          {cat.type === 'articles' && (
             <div className='priceBlock'>
               <div className='select'>
                 <input

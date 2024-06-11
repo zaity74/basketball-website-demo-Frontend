@@ -1,12 +1,12 @@
-// On refresh page, user and isLogin are equel to 
-//the value in localstorage
 
+// ------------------------ LOGIN -----------------------------------------------------
 const loginTokenStorage = localStorage.getItem("loginToken")
   ? JSON.parse(localStorage.getItem("loginToken"))
   : [];
 const loginInfoStorage = localStorage.getItem("loginInfo")
 ? JSON.parse(localStorage.getItem("loginInfo"))
 : false;
+
 const userLoginState = {
     user: loginTokenStorage,
     loading : false,
@@ -19,7 +19,7 @@ export const userLoginReducer = (state = userLoginState, action) => {
         case 'LOGIN_REQUEST':
             return {
                 ...state,
-                loading: false
+                loading: true
             }
         case 'LOGIN_SUCCESS':
             return {
@@ -35,19 +35,32 @@ export const userLoginReducer = (state = userLoginState, action) => {
                 error : action.payload,
                 isLogin : false, 
             }
-        case 'USER_LOGOUT':
+        case 'USER_LOGOUT_REQUEST':
+            return {
+                ...state,
+                loading: true,
+                user : {},
+                isLogin : false, 
+            }
+        case 'USER_LOGOUT_SUCCESS':
             return {
                 ...state,
                 loading: false,
-                user : {},
+                user : action.payload,
+                isLogin : false, 
+            }
+        case 'USER_LOGOUT_FAIL':
+            return {
+                ...state,
+                loading: false,
+                error : action.payload,
                 isLogin : false, 
             }
         default:
             return state
     }
 }
-
-
+// ------------------------ REGISTER -----------------------------------------------------
 
 const registerTokenStorage = localStorage.getItem("registerToken")
   ? JSON.parse(localStorage.getItem("registerToken"))
@@ -94,6 +107,8 @@ export const userRegisterReducer = (state = userRegisterState, action) => {
     }
 }
 
+
+// ------------------------ FORGOT PASSWORD -----------------------------------------------------
 const forgotPasswordState = {
     loading: false,
     success: false,

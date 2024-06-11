@@ -4,6 +4,7 @@
 
 @media all and (min-width: 800px){
     .login{
+        background-color: white;
         .activeLink{
             color: #c40812 !important;
             font-weight: 600;
@@ -240,7 +241,6 @@
                 background-color: white;
                 list-style-type: none;
                 height: 100%;
-        
                 .connexion{
                     height: 50%;
                     padding-left: 0.6rem;
@@ -260,6 +260,8 @@
                         text-transform: uppercase;
                         text-decoration: none;
                         font-size: 0.8rem;
+                        display: flex;
+                        align-items: center;
                     }
                     .icone{
                         font-size: 1.3rem;

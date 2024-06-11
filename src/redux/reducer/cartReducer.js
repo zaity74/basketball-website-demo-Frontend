@@ -1,37 +1,76 @@
-/* PULLING DATA OUT OF LOCAL STORAGE AND LOAD IT INTO INITIAL STATE */
-const cartItemsFromStorage = localStorage.getItem("cartItems")
-  ? JSON.parse(localStorage.getItem("cartItems"))
-  : [];
 
+// ------------------------ ADD TO CART ------------------------------ 
 
-export const cartReducer = (state = { cartItems: cartItemsFromStorage }, action) => {
+const cartItemAddedStorage = {
+  cartItems : [],
+  loading : false,
+  error : null,
+}
+
+export const addToCartReducer = (state = cartItemAddedStorage, action) => {
   switch (action.type) {
     // ADD TO CART
     case 'ADD_TO_CART_REQUEST':
             return {
             ...state,
-            loading: false,
+            loading: true,
         };
     case 'ADD_TO_CART_SUCCESS':
       return {
         ...state,
         cartItems: action.payload,
+        loading: false,
+        error: null,
       }
     case 'ADD_TO_CART_FAIL':
-        return { ...state, error: action.payload };
+        return { ...state, 
+          error: action.payload, 
+          loading: false 
+    };
+    default:
+      return state;
+  }
+};
+
+// ------------------------ GET ALL CART ITEMS ------------------------------ 
+
+const cartItemsStorage = {
+  cartItems : [],
+  loading : false,
+  error : null,
+}
+
+export const allCartItemsReducer = (state = cartItemsStorage, action) => {
+  switch (action.type) {
     // FETCH ALL CART ITEM
     case 'CART_FETCH_REQUEST':
         return {
         ...state,
-        loading: false,
+        loading: true,
     };
     case 'CART_FETCH_SUCCESS':
       return {
         ...state,
         cartItems: action.payload,
+        loading: false,
       }
     case 'CART_FETCH_FAIL':
-      return { ...state, error: action.payload };
+      return { ...state, error: action.payload, loading: false};
+    default:
+      return state;
+  }
+};
+
+// ------------------------ INCREASE & DECREASE SINGLE CART ITEM ------------- 
+
+const updatedCartItemsStorage = {
+  cartItems : [],
+  loading : false,
+  error : null,
+}
+
+export const updatedCartItemsReducer = (state = updatedCartItemsStorage, action) => {
+  switch (action.type) {
     // DEACREASE
     case 'DECREASE_CART_REQUEST':
       return {
@@ -42,11 +81,13 @@ export const cartReducer = (state = { cartItems: cartItemsFromStorage }, action)
       return {
         ...state,
         cartItems: action.payload,
+        loading: false,
       }
     case 'DECREASE_CART_FAIL':
       return {
         ...state,
         error: action.payload,
+        loading: false,
       };
     // INCREASE
     case 'INCREASE_CART_REQUEST':
@@ -58,12 +99,29 @@ export const cartReducer = (state = { cartItems: cartItemsFromStorage }, action)
       return {
         ...state,
         cartItems: action.payload,
+        loading: false,
       }
     case 'INCREASE_CART_FAIL':
       return {
         ...state,
         error: action.payload,
+        loading: false,
       };
+    default:
+      return state;
+  }
+};
+
+// ------------------------ REMOVE SINGLE ITEM FROM CART --------------------- 
+
+const removedCartItemsStorage = {
+  cartItems : [],
+  loading : false,
+  error : null,
+}
+
+export const removedCartItemsReducer = (state = removedCartItemsStorage, action) => {
+  switch (action.type) {
     // REMOVE FROM CART
     case 'REMOVE_FROM_CART_REQUEST':
       return {
@@ -74,10 +132,26 @@ export const cartReducer = (state = { cartItems: cartItemsFromStorage }, action)
       return {
         ...state,
         cartItems: action.payload,
+        loading: false,
       };
         
     case 'REMOVE_FROM_CART_FAIL':
-      return { ...state, error: action.payload };
+      return { ...state, error: action.payload, loading: false, };
+    default:
+      return state;
+  }
+};
+
+// ------------------------ CLEAR ALL THE CART -------------------------------
+
+const clearCartStorage = {
+  cartItems : [],
+  loading : false,
+  error : null,
+}
+
+export const clearCartReducer = (state = clearCartStorage, action) => {
+  switch (action.type) {
     // CLEAR CART 
     case 'CLEAR_CART_REQUEST':
       return {

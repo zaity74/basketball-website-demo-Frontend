@@ -1,22 +1,43 @@
 import axios from "axios";
+import { getCookie } from "./userActions";
 
 
 export const addReview = (id, params) => async (dispatch, getState) => {
-  // COOKIES VARIABLE
-  const token = getState().userLogin.user.token;
+
+  const { rating, comment } = params;
+
+  // Récupérer le authToken depuis les cookies 
+  const authToken = getCookie('authToken');
+
+  if (!authToken) {
+      console.log('No valid token');
+      return dispatch({
+        type: 'PRODUCT_CREATED_FAIL',
+        payload: 'You need to be logged in to add a product to the cart. Please log in or create an account.',
+      });
+  }
+
+  // Configuration des en-têtes
   const config = {
     headers: {
-      Authorization: `Bearer ${token}`,
-    },
+      'Content-Type': 'application/json', 
+      'Authorization' : `Bearer ${authToken}`
+    }, 
+    widthCredentials: true,
+  };
+
+  const body = {
+    rating, 
+    comment
+    
   };
 
 
   try {
-    const { rating, comment } = params;
     dispatch({ type: 'FETCH_REVIEW_REQUEST' });
 
     const response = await axios.post(
-      `http://localhost:3306/api/v1/reviews/create-review/${id}`,{ rating, comment },config
+      `http://localhost:3300/api/v1/reviews/create-review/${id}`,body ,config
     );
 
     dispatch({
@@ -47,7 +68,7 @@ export const removeReview = (id) => async (dispatch,getState) =>{
         }
     };
     try{
-        const response = await axios.delete(`https://basket-demo2-website-api.onrender.com/api/product/reviews/${id}`,config);
+        const response = await axios.delete(`http://localhost:3300/api/product/reviews/${id}`,config);
         dispatch({
             type: 'REVIEW_REMOVE',
             payload: response.data

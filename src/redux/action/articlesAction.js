@@ -1,6 +1,15 @@
 // Library
 import axios from 'axios'; 
 
+// Fonction pour obtenir un cookie spécifique
+const getCookie = (name) => {
+  const value = `; ${document.cookie}`;
+  const parts = value.split(`; ${name}=`);
+  if (parts.length === 2) return parts.pop().split(';').shift();
+  return null;
+};
+
+
 // ENV VARIABLE 
 export const listeArticles = (params) => async (dispatch) => {
     try {
@@ -8,7 +17,7 @@ export const listeArticles = (params) => async (dispatch) => {
   
       // Get the data from the API
       dispatch({ type: 'FETCH_ARTICLES_REQUEST' });
-      const response = await axios.get('https://basket-demo2-website-api.onrender.com/api/v1/articles/', {
+      const response = await axios.get('http://localhost:3300/api/v1/articles/', {
         params: { page, category, title, sortField, sortOrder},
       });
       
@@ -29,7 +38,7 @@ export const articleDetail = (id)  => async (dispatch,getState) => {
     try {
         // Get the data from the api product
         dispatch({ type: 'FETCH_DETAILS_ARTICLE_REQUEST' })
-        const response = await axios.get(`https://basket-demo2-website-api.onrender.com/api/v1/articles/${id}`)
+        const response = await axios.get(`http://localhost:3300/api/v1/articles/${id}`)
         // Success, return data into action.payload
         dispatch({
             type: 'FETCH_DETAILS_ARTICLE_SUCCESS',
@@ -55,25 +64,23 @@ export const createArticle = (params) => async (dispatch, getState) => {
       user,
       banner
     } = params;
-
-    // Récupérer le authToken depuis le localStorage
-     const tokenInfo = JSON.parse(localStorage.getItem('loginToken'));
-
-     if (!tokenInfo || !tokenInfo.token) {
-       throw new Error('No auth token found');
-     }
- 
-     const authToken = tokenInfo.token;
+    
+    // Récupérer le authToken depuis les cookies 
+    const authToken = getCookie('authToken');
 
     if (!authToken) {
-      throw new Error('No auth token found');
+        console.log('No valid token');
+        return dispatch({
+          type: 'ADD_TO_CART_FAIL',
+          payload: 'You need to be logged in to add a product to the cart. Please log in or create an account.',
+        });
     }
 
     // Configuration des en-têtes
     const config = {
       headers: {
-        'Authorization': `Bearer ${authToken}`,
-        'Content-Type': 'application/json'
+        'Content-Type': 'application/json', 
+        'Authorization' : `Bearer ${authToken}`
       }
     };
 
@@ -92,7 +99,7 @@ export const createArticle = (params) => async (dispatch, getState) => {
     dispatch({ type: 'FETCH_CREATE_ARTICLE_REQUEST' });
 
     // Faire la requête API pour créer un article
-    const response = await axios.post(`https://basket-demo2-website-api.onrender.com/api/v1/articles/create-article/`, body, config);
+    const response = await axios.post(`http://localhost:3300/api/v1/articles/create-article/`, body, config);
 
     // Succès, retourner les données dans action.payload
     dispatch({

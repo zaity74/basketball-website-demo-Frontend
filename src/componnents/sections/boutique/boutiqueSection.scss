@@ -81,6 +81,8 @@
 
             .image {
               height: 100%;
+              width: 100%;
+              object-fit: cover;
             }
 
             .new {
@@ -169,6 +171,12 @@
               text-decoration: none;
               color: white;
             }
+            .icone-focused{
+              font-size: 1.4em;
+              transition: all 0.3s ease;
+              text-decoration: none;
+              color: rgb(221, 7, 65);
+            }
           }
 
           .overlay {
@@ -193,6 +201,7 @@
 @media all and (min-width: 1250px) {
     #boutique {
       width: 100%;
+      max-width: 1500px;
   
       .container {
         width: 90%;
@@ -200,16 +209,16 @@
         flex-direction: column;
         row-gap: 12px;
         position: relative;
-        padding-top: 4em;
-        padding-bottom: 4em;
+        // padding-top: 4em;
+        // padding-bottom: 4em;
         margin: auto;
   
         .cart-container {
           width: 100%;
           display: grid;
-          grid-template-columns: repeat(5, 10fr);
-          grid-template-rows: repeat(auto-fit, minmax(0, 280px));
-          grid-auto-rows: minmax(auto);
+          display: grid;
+          grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+          gap: 1.5rem;
           gap: 20px;
           align-items: center;
           justify-content: center;
@@ -236,7 +245,7 @@
               display: flex;
               justify-content: center;
               align-items: center;
-              height: 210px;
+              height: 250px;
               border-bottom: 0.7px rgb(143, 143, 143) solid;
               position: relative;
               padding: 0px !important;
@@ -267,12 +276,14 @@
   
             .title-cart {
               font-size: 90% !important;
-              font-weight: 400;
+              font-weight: 600;
               margin-top: 0 !important;
               margin-bottom: 0 !important;
               padding: 0.9em;
               text-decoration: none;
               color: black;
+              height: 40px;
+              text-transform: uppercase;
             }
   
             .text {
@@ -357,8 +368,8 @@
         flex-direction: column;
         row-gap: 12px;
         position: relative;
-        padding-top: 4em;
-        padding-bottom: 4em;
+        // padding-top: 4em;
+        // padding-bottom: 4em;
         margin: auto;
   
         .cart-container {
@@ -424,12 +435,13 @@
   
             .title-cart {
               font-size: 90% !important;
-              font-weight: 400;
+              font-weight: 600;
               margin-top: 0 !important;
               margin-bottom: 0 !important;
               padding: 0.9em;
               text-decoration: none;
               color: black;
+              height: 60px;
             }
   
             .text {
@@ -515,8 +527,8 @@
         flex-direction: column;
         row-gap: 12px;
         position: relative;
-        padding-top: 4em;
-        padding-bottom: 4em;
+        // padding-top: 4em;
+        // padding-bottom: 4em;
         margin: auto;
   
         .cart-container {
@@ -673,8 +685,8 @@
         flex-direction: column;
         row-gap: 12px;
         position: relative;
-        padding-top: 4em;
-        padding-bottom: 4em;
+        // padding-top: 4em;
+        // padding-bottom: 4em;
         margin: auto;
   
         .cart-container {
@@ -831,8 +843,8 @@
         flex-direction: column;
         row-gap: 12px;
         position: relative;
-        padding-top: 4em;
-        padding-bottom: 4em;
+        // padding-top: 4em;
+        // padding-bottom: 4em;
         margin: auto;
   
         .cart-container {
@@ -988,8 +1000,8 @@
         flex-direction: column;
         row-gap: 12px;
         position: relative;
-        padding-top: 4em;
-        padding-bottom: 4em;
+        // padding-top: 4em;
+        // padding-bottom: 4em;
         margin: auto;
   
         .cart-container {

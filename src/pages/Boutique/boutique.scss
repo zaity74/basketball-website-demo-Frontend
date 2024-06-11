@@ -294,6 +294,8 @@
   }
 #boutique {
     width: 100%;
+    max-width: 1500px;
+    margin: auto;
 
     .container {
       width: 90%;
@@ -353,9 +355,10 @@
   }
 @media all and (min-width: 520px){
     .filtre-section{
-        width: 100%;
         display: flex;
         align-items: flex-end;
+        background-color: white;
+        padding: 0.6rem;
         .title{
             font-family: 'Roboto Condensed';
             text-transform: uppercase;
@@ -410,6 +413,12 @@
                         width: 100%;
                         background-color: white;
                         border: 1px black solid;
+                        z-index: 12;
+                        position: absolute;
+                        margin-top: 49px;
+                        transition: all 1.4s ease-in-out;
+                        box-shadow: rgba(0, 0, 0, 0.2) 0px 2px 8px;
+
                         li{
                             padding-top: 0.2em;
                             padding-bottom: 0.2em;

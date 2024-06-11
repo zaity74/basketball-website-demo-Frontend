@@ -37,6 +37,7 @@ function RegisterForm(props) {
 
         try {
             await dispatch(userRegister(firstname, lastname, email, password));
+            navigate('/login');
         } catch (error) {
             console.error('Registration error:', error);
         }

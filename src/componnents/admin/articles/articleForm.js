@@ -1,6 +1,5 @@
 import ReactQuill, { Quill} from 'react-quill';
 import 'react-quill/dist/quill.snow.css'; // Importation des styles pour ReactQuill
-import Navbar from './header/navbar/login';
 import ImageResize from 'quill-image-resize-module-react';
 
 // HOOKS 
@@ -9,9 +8,8 @@ import { useForm, Controller } from 'react-hook-form';
 import { useDispatch, useSelector } from 'react-redux';
 
 // REDUX IMPORTS
-import { createArticle } from '../redux/action/articlesAction';
-import { userLogin } from '../redux/action/userActions';
-import { listeCategory } from '../redux/action/categoryAction';
+import { createArticle } from '../../../redux/action/articlesAction';
+import { listeCategory } from '../../../redux/action/categoryAction';
 
 // --------- CONFIGURATION HTML FORMS 
 
@@ -58,8 +56,6 @@ const stripHtmlTags = (html) => {
   return doc.body.textContent || "";
 };
 
-// -----------------------------------------------------------
-
 const ArticleForm = () => {
   // STATE
   const [submittedData, setSubmittedData] = useState(null);
@@ -70,7 +66,8 @@ const ArticleForm = () => {
   const { error, loading } = useSelector((state) => state.createArticle);
   const { userFound } = useSelector((state) => state.userLogin.user); // error, isLogin, loading, user
   const categories = useSelector((state) => state.listCategory.category.data);
-  console.log('user info :',userFound && userFound._id);
+  const userFoundId = useSelector((state) => state.userLogin.user);
+  console.log('user info :', userFoundId);
 
   // EFFECTS
   useEffect(() => {
@@ -113,50 +110,52 @@ const ArticleForm = () => {
 
   return (
   <>
-  <Navbar />
-  <form onSubmit={handleSubmit(onSubmit)}>
-      <div>
-        <label htmlFor="title">Titre</label>
-        <input id="title" {...register('title', { required: true })} />
-      </div>
+    <div className='container'>
+    <h2>Create articles : </h2>
+      <form onSubmit={handleSubmit(onSubmit)}>
+          <div>
+            <label htmlFor="title">Titre</label>
+            <input id="title" {...register('title', { required: true })} />
+          </div>
 
-      <div>
-        <label htmlFor="slug">Slug</label>
-        <input id="slug" {...register('slug', { required: true })} />
-      </div>
+          <div>
+            <label htmlFor="slug">Slug</label>
+            <input id="slug" {...register('slug', { required: true })} />
+          </div>
 
-      <div>
-        <label htmlFor="description">Description</label>
-        <input id="description" {...register('description', { required: true })} />
-      </div>
+          <div>
+            <label htmlFor="description">Description</label>
+            <input id="description" {...register('description', { required: true })} />
+          </div>
 
-      <div>
-        <label htmlFor="category">Catégorie</label>
-        <select id="category" {...register('category', { required: true })}>
-          {categories && categories.map((cat) => (
-            <option key={cat._id} value={cat._id}>{cat.name}</option>
-          ))}
-        </select>
-      </div>
+          <div>
+            <label htmlFor="category">Catégorie</label>
+            <select id="category" {...register('category', { required: true })}>
+              {categories && categories.map((cat) => (
+                <option key={cat._id} value={cat._id}>{cat.name}</option>
+              ))}
+            </select>
+          </div>
 
-      <div>
-        <label htmlFor="banner">Bannière (URL de l'image)</label>
-        <input id="banner" {...register('banner', { required: true })} />
-      </div>
+          <div>
+            <label htmlFor="banner">Bannière (URL de l'image)</label>
+            <input id="banner" {...register('banner', { required: true })} />
+          </div>
 
-      <div>
-        <label htmlFor="content">Contenu</label>
-        <Controller
-          name="content"
-          control={control}
-          defaultValue=""
-          render={({ field }) => <ReactQuill {...field} modules={modules}  />}
-          rules={{ required: true }}
-        />
-      </div>
+          <div>
+            <label htmlFor="content">Contenu</label>
+            <Controller
+              name="content"
+              control={control}
+              defaultValue=""
+              render={({ field }) => <ReactQuill {...field} modules={modules}  />}
+              rules={{ required: true }}
+            />
+          </div>
 
-      <button type="submit">Créer l'article</button>
-    </form>
+          <button type="submit">Créer l'article</button>
+      </form>
+    </div>
   </>
   );
 };

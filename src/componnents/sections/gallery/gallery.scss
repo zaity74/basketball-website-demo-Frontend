@@ -2,6 +2,8 @@
 @media all and (min-width: 1250px){
     #gallery{
         width: 100%;
+        max-width: 1500px;
+        margin: auto;
         height: auto;
         display: flex;
         justify-content: center;

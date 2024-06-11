@@ -19,7 +19,7 @@ import { listeProduct } from '../../redux/action/productAction';
 import { addToCart } from '../../redux/action/cartAction';
 import { listeCalendar } from '../../redux/action/gamesAction';
 import { listeRanking } from '../../redux/action/gamesAction';
-import { getCartItems } from '../../redux/action/cartAction';
+
 // Hooks
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
@@ -34,8 +34,11 @@ function Home(props) {
     const dispatch = useDispatch();
     const location = useLocation();
     const articles  = useSelector((state) => state.listeArticles.article.articles);
-    const {data}   = useSelector((state) => state.listeMedia.medias);
+    const loadingArticle = useSelector((state) => state.listeArticles.loading);
+    const {data}   = useSelector((state) => state.listeMedia);
+    console.log('liste media', data);
     const products   = useSelector((state) => state.listProduct.product.products);
+    const loadingProduct  = useSelector((state) => state.listProduct.loading);
     const games = useSelector((state) => state.listeGames.games.data);
     const ranking = useSelector((state) => state.listeGames.ranking.data);
     const { cartItems } = useSelector((state) => state.addToCart.cartItems);
@@ -95,12 +98,11 @@ function Home(props) {
         <Navbar />
         <Header />
         <Games gameInfo={games} />  
-        <Actualite articles={ articles }  ranking={ranking} loading={loading} />
+        <Actualite articles={ articles }  ranking={ranking} loading={loadingArticle} />
         <GallerySection  gallery={ data }/>
         <Category />
         {
-          loading ? (<p>Loading...</p>) : 
-          <BoutiqueSection product={ products } isAdded={isAdded} setIsAdded={setIsAdded} />
+          <BoutiqueSection product={ products } isAdded={isAdded} setIsAdded={setIsAdded} loading={loadingProduct} />
         }
         <Sponsors />
         <Social />

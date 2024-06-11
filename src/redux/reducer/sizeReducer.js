@@ -1,4 +1,4 @@
-// ========= LIST ARTICLE ===============================
+// ========= LIST SIZE ===============================
 const sizeInitialState = {
     size : [],
     loading : false,
@@ -28,3 +28,35 @@ export const sizeReducer = (state = sizeInitialState, action) => {
             return state
     }
 }
+
+// ========= CREATE SIZE ===============================
+const createSizeState = {
+    size : [],
+    loading : false,
+    error : null,
+
+}
+export const createSizeReducer = (state = createSizeState, action) => {
+    switch (action.type) {
+        case 'CREATE_SIZE_REQUEST':
+            return {
+                ...state,
+                loading: true
+            }
+        case 'CREATE_SIZE_SUCCESS':
+            return {
+                ...state,
+                loading: false,
+                size : action.payload,
+            }
+        case 'CREATE_SIZE_FAIL':
+            return {
+                ...state,
+                loading: false,
+                error : action.payload
+            }
+        default:
+            return state
+    }
+}
+

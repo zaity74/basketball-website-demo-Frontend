@@ -1,11 +1,11 @@
 // Redux import 
-import TestCard from '../componnents/test';
+import AdminContainer from "../componnents/adminContainer";
 
 
 // Hooks
 
 
-function Test(props) {
+function AdminPage(props) {
     // State
 
 
@@ -24,12 +24,12 @@ function Test(props) {
     return (
       <>
       <div className='home-section'>
-        <TestCard />
+        <AdminContainer />
       </div>
 
       </>
     );
   }
   
-  export default Test;
+  export default AdminPage;
   

@@ -1,6 +1,8 @@
 import { createBrowserHistory } from 'history';
 import { BsHeartFill } from 'react-icons/bs';
 import ErrorModal from '../modal/modal';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 // Redux import : action to dispatch 
 import { getCartItems, addToCart } from "../../redux/action/cartAction";
@@ -17,7 +19,7 @@ function Cart(props) {
     const { cart } = props;
 
     // STATE
-    const [errors, setErrors] = useState("");
+    // const [errors, setErrors] = useState("");
     const [isAdd, setIsAdd] = useState({});
     const [isLike, setIsLike] = useState({});
     const [isChecked, setIsChecked] = useState(false);
@@ -28,6 +30,7 @@ function Cart(props) {
     const { error, loading, data } = useSelector((state) => state.allCartItems.cartItems);
     const userProd = useSelector((state) => state.userProductStatus?.userProduct?.data || []);
     const addToCartMessage = useSelector((state) => state.addToCart?.cartItems);
+    const messageCart = useSelector((state) => state.addToCart?.cartItems.message);
     const isLogin = useSelector(state => state.userLogin.isLogin);
     const { totalItem, wishlistItem } = useSelector((state) => state.getAllWishlist.wishlist);
     const dispatch = useDispatch();
@@ -85,7 +88,7 @@ function Cart(props) {
     useEffect(() => {
         // GET ERROR MESSAGE
         if (addToCartMessage && addToCartMessage.message) {
-            setErrors(addToCartMessage.message);
+            // setErrors(addToCartMessage.message);
             setStatus(addToCartMessage.status);
             // setShowModal(true);
         }
@@ -100,14 +103,13 @@ function Cart(props) {
             }
 
             await dispatch(addToCart(id, { qty }));
-
             await dispatch(userProductStatus());
-
             await dispatch(getCartItems());
+            toast.success(messageCart, "👍");
             // setIsAdd(prevIsAdd => ({ ...prevIsAdd, [id]: true }));
         } catch (error) {
             console.error('Erreur lors de la récupération des données:', error);
-            setErrors(error.message || 'An error occurred');
+            // setErrors(error.message || 'An error occurred');
             setStatus('Erreur');
             setShowModal(true);
         }
@@ -123,11 +125,13 @@ function Cart(props) {
             await dispatch(addToWishlist(id));
             await dispatch(getAllWishlist());
             await dispatch(userProductStatus());
-            
+            toast.success('product added to saved-items 👍');
+
             // setIsAdd(prevIsAdd => ({ ...prevIsAdd, [id]: true }));
         } catch (error) {
             console.error('Erreur lors de la récupération des données:', error);
-            setErrors(error.message || 'An error occurred');
+            // setErrors(error.message || 'An error occurred');
+            toast.error(error);
             setStatus('Erreur');
             setShowModal(true);
         }
@@ -168,8 +172,10 @@ function Cart(props) {
                         </p> */}
                     </Link>
                 </div>
+                
             ))}
 
+            <ToastContainer />
             {/* <ErrorModal show={showModal} handleClose={handleCloseModal} status={status} errorMessage={errors} /> */}
         </>
     );

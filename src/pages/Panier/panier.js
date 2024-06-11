@@ -8,6 +8,8 @@ import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from 'react-redux';
 import { BsTrash } from 'react-icons/bs';
 import { Link } from 'react-router-dom';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 function Panier(props) {
 
@@ -61,6 +63,7 @@ function Panier(props) {
     try {
       await dispatch(removeCart(id));
       await dispatch(getCartItems());
+      toast.success('Item is removed from the cart 🚪');
     } catch(error) {
       console.error('Erreur lors de la suppression de l\'élément du panier:', error);
     }
@@ -71,6 +74,7 @@ function Panier(props) {
       await dispatch(clearCart());
       localStorage.removeItem("addedProducts");
       await dispatch(getCartItems());
+      toast.success('Cart is empty 🗑');
     } catch(error) {
       console.error('Erreur lors de la récupération des données:', error);
     }
@@ -146,6 +150,7 @@ function Panier(props) {
           )}
         </div>
       </div>
+      <ToastContainer />
       <Footer />
     </>
   );

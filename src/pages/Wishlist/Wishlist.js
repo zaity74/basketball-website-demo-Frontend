@@ -5,6 +5,8 @@ import { BsTrash } from 'react-icons/bs';
 import { getAllWishlist, removeFromWishlist, clearWishlist } from "../../redux/action/wishlistAction";
 import { userLogin } from "../../redux/action/userActions";
 import Navbar from "../../componnents/header/navbar/login";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 import './wishlist.scss'; // Assurez-vous de créer ce fichier pour les styles CSS
 
@@ -34,6 +36,7 @@ const Wishlist = () => {
   const handleRemoveFromWishlist = async (id) => {
         await dispatch(removeFromWishlist(id));
         await dispatch(getAllWishlist());
+        toast.success('Product removed from saved items');
   };
 
   return (
@@ -79,6 +82,7 @@ const Wishlist = () => {
         )}
       </div>
     </div>
+    <ToastContainer />
     </>
   );
 };

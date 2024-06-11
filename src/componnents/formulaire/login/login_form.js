@@ -2,6 +2,8 @@ import './login_form.scss';
 import BasicContainer from '../../../admin/componnents/container/basic_container';
 import Footer from '../../footer/footer';
 import { Link } from 'react-router-dom';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 // Redux import 
 import { userLogin } from '../../../redux/action/userActions';
@@ -38,6 +40,7 @@ function LoginForm(props) {
         e.preventDefault();
         // do something with the email and password
         await dispatch(userLogin(email,password));
+        toast.dark(`you are connected`);
         
     };
    
@@ -113,6 +116,7 @@ function LoginForm(props) {
             </div>
             </div>
         </div>
+        <ToastContainer />
         </>
     );
   }

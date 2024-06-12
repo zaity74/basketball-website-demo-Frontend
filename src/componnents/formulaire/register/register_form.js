@@ -1,4 +1,6 @@
 import '../login/login_form.scss';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 // Redux import 
 import { userRegister } from '../../../redux/action/userActions';
@@ -20,6 +22,7 @@ function RegisterForm(props) {
     const dispatch = useDispatch();
     const navigate = useNavigate();
     const { isRegiter, error } = useSelector(state => state.userRegister); 
+    const errorRegister = useSelector(state => state.userRegister.error); 
     const userRegisterState = useSelector(state => state.userRegister);
 
 
@@ -144,7 +147,7 @@ function RegisterForm(props) {
             </div>
             </div>
             </div>
-
+            <ToastContainer />
       </>
     );
   }

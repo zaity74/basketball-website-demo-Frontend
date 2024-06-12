@@ -28,6 +28,9 @@ function Panier(props) {
   useEffect(() => {
     const fetchCartItems = async() => {
       try {
+        if(!isLogin){
+          return;
+        }
         await dispatch(getCartItems());
       } catch (error) {
         console.log("nous avons pas pu récupérer les données", error);
@@ -46,7 +49,7 @@ function Panier(props) {
 
     return () => clearTimeout(loadingTimer);
 
-  }, [dispatch, totalPrice]);
+  }, [dispatch, totalPrice, isLogin]);
 
   // FUNCTIONS
   const decreaseQuantity = async (id) => {
@@ -85,7 +88,8 @@ function Panier(props) {
       <Navbar />
       <div className="panier_section">
         <div className="container">
-          {error && !isLogin ? (
+          {/* mettre isLogin apres error */}
+          {error || !isLogin ? (
             <div className='logoutUser'>
               <p>
                 You need to be logged in to add items to the cart, please <br></br> <Link to={'/login'}>log in</Link> or <Link to={'/register'}>create an account</Link>.

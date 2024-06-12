@@ -42,7 +42,6 @@ function Category(props) {
     const dispatch = useDispatch();
     const { loading, error } = useSelector((state) => state.listCategory);
     const allCategory = useSelector((state) => state.listCategory.category.data);
-    console.log('liste category', allCategory);
      
     // EFFECTS 
      // Page load

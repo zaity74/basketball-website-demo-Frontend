@@ -14,29 +14,32 @@ import Panier from "./pages/Panier/panier"
 import AdminPage from "./pages/admin"
 import ForgotPwdPage from "./pages/ForgetPwd/forgot_pwd"
 import Wishlist from "./pages/Wishlist/Wishlist"
+import PrivateRoute from "./componnents/protectedRoute/protectedRoute"
 
 
-function App(props){
-    return(
-        <>
-            <Router>
-                    <Routes>
-                        <Route path="/" element={<Home />} />
-                        <Route path="/boutique" element={<Boutique />} />
-                        <Route path="/boutique/:id" element={<ProductDetails />} />
-                        <Route path="/contact" element={<Contact />} />
-                        <Route path="/register" element={<Register />} />
-                        <Route path="/login" element={<Login />} />
-                        <Route path="/blog" element={<Blog />} />
-                        <Route path="/blog/:id" element={<ArticleDetail />} />
-                        <Route path="/panier" element={<Panier />} />
-                        <Route path="/saved-items" element={<Wishlist />} />
-                        <Route path="/admin" element={<AdminPage />} />
-                        <Route path="/forgot-password" element={<ForgotPwdPage />} />
-                    </Routes>
-            </Router>
-        </>
-    )
-}
+function App() {
+    return (
+      <Router>
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/boutique" element={<Boutique />} />
+          <Route path="/boutique/:id" element={<ProductDetails />} />
+          <Route path="/contact" element={<Contact />} />
+          <Route path="/register" element={<Register />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/blog" element={<Blog />} />
+          <Route path="/blog/:id" element={<ArticleDetail />} />
+          <Route path="/forgot-password" element={<ForgotPwdPage />} />
+          <Route path="/panier" element={<Panier />} />
+          <Route path="/saved-items" element={<Wishlist />} />
+          
+          {/* Routes protégées */}
+          <Route element={<PrivateRoute />}>
+            <Route path="/admin" element={<AdminPage />} />
+          </Route>
+        </Routes>
+      </Router>
+    );
+  }
 
 export default App

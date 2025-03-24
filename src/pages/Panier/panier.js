@@ -85,7 +85,6 @@ function Panier(props) {
 
   return (
     <>
-      <Navbar />
       <div className="panier_section">
         <div className="container">
           {/* mettre isLogin apres error */}

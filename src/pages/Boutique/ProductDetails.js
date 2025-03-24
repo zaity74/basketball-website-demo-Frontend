@@ -126,7 +126,6 @@ function ProductDetails() {
 
   return (
     <>
-    <Navbar />
         <div class="detail_section">
           <div className="container detail-container">
             <Breadcrumbs />

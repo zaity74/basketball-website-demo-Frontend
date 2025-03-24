@@ -24,7 +24,6 @@ function Login(props) {
   
     return (
       <>
-        <Navbar/>
           <LoginForm />
         <Footer />
       </>

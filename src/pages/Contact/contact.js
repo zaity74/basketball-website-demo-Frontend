@@ -23,7 +23,6 @@ function Contact(props) {
   
     return (
       <>
-        <Navbar/>
         <BasicContainer>
         </BasicContainer>
         <Footer/>

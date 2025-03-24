@@ -21,7 +21,6 @@ function ForgotPwdPage(props) {
   
     return (
       <>
-        <Navbar/>
           <ForgotForm />
         <Footer />
       </>

@@ -51,7 +51,6 @@ function ArticleDetail(props) {
 
   return (
     <>
-    <Navbar />
     <Banner 
     title={''} 
     backgroundImageUrl={'https://www.swisscentralbasketball.ch/wp-content/uploads/2022/09/Swiss_central_basket_2022_23-SBL.png'} 

@@ -93,7 +93,6 @@ function Home(props) {
     return (
       <>
       <div className='home-section'>
-        <Navbar />
         <Header />
         <Games gameInfo={games} />  
         <Actualite articles={ articles }  ranking={ranking} loading={loadingArticle} />

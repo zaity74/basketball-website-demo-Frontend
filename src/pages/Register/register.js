@@ -24,7 +24,6 @@ function Register(props) {
   
     return (
       <>
-        <Navbar/>
           <RegisterForm />
         <Footer />
       </>

@@ -226,7 +226,6 @@ function Blog(props) {
   
     return (
       <>
-      <Navbar />
           <section id="articles">
             <div className='container'>
             <Banner title={'Blog'} backgroundImageUrl={'https://res.cloudinary.com/swiss-basketball/image/fetch/c_fill,g_center,f_auto,q_80,w_1900,h_780/https://s3.eu-central-1.amazonaws.com/swiss.basketball/assets/swissbasket/5x5u20menswitzerland-1689411071.jpg'}/>

@@ -429,7 +429,6 @@ function Boutique(props) {
 
     return (
         <>
-            <Navbar />
             <section id="boutique">
                 <div className='container'>
                     <Banner title={'Boutique'} backgroundImageUrl={'https://www.basketsession.com/statics/uploads/2024/05/Bandeau-NL-2-1156x600.jpg'} />
